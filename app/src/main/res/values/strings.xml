@@ -4,4 +4,9 @@
     <string name="menu_room">Room</string>
     <string name="menu_achieve">Achieve</string>
     <string name="menu_profile">Profile</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign up</string>
+    <string name="email">Email</string>
+    <string name="email_example">email@example.com</string>
+    <string name="password">password</string>
 </resources>
