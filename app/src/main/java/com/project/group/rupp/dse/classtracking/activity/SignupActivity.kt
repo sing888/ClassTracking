@@ -1,4 +1,4 @@
-package com.project.group.rupp.dse.classtracking
+package com.project.group.rupp.dse.classtracking.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -19,6 +19,11 @@ class SignupActivity: Activity() {
             // start main activity
             startActivity(Intent(this, MainActivity::class.java)
                 .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+        }
+
+        binding.signUpToSignIn.setOnClickListener{
+            // start sign in activity
+            startActivity(Intent(this, SigninActivity::class.java))
         }
     }
 
