@@ -65,7 +65,7 @@ class ProfileFragment: Fragment(){
 
     private fun loadData(data: Profile){
         Picasso.get().load(data.profilePicture).into(binding.profilePicture)
-//        Picasso.get().load(data.coverPicture).into(binding.profileHeader.background as ImageView)
+        Picasso.get().load(data.coverPicture).into(binding.coverPicture)
         binding.username.text = data.firstName + " " + data.lastName
     }
 
