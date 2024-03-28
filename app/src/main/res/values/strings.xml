@@ -6,10 +6,14 @@
     <string name="menu_profile">Profile</string>
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
+    <string name="log_out">Log out</string>
     <string name="email">Email</string>
     <string name="email_example">email@example.com</string>
     <string name="password">password</string>
     <string name="confirm_password">Confirm password</string>
-    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_passwords">Forgot password?</string>
+    <string name="forgot_password">Forgot password</string>
     <string name="sign_in_option">______________ Or sign in with ______________</string>
+    <string name="submit">Submit</string>
+    <string name="new_password">New password</string>
 </resources>

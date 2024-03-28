@@ -24,13 +24,12 @@ class ProfileFragment: Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentProfileBinding.bind(view)
 
-//        binding.logoutButton.setOnClickListener{
-//            // change activity to sign in activity
-//            startActivity(
-//                Intent(requireContext(), SigninActivity::class.java)
-//                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
-//        }
+        binding.logoutButton.setOnClickListener{
+            // start sign in activity
+            startActivity(Intent(requireContext(), SigninActivity::class.java))
+        }
     }
 
     override fun onDestroy() {

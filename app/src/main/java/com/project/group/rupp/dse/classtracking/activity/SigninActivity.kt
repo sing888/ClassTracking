@@ -19,13 +19,17 @@ class SigninActivity: Activity(){
         binding.signInButton.setOnClickListener{
             // start main activity
             startActivity(
-                Intent(this, MainActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK))
+                Intent(this, MainActivity::class.java))
         }
 
         binding.signInToSignUp.setOnClickListener{
             // start sign up activity
             startActivity(Intent(this, SignupActivity::class.java))
+        }
+
+        binding.forgotPassword.setOnClickListener{
+            // start forgot password activity
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
     }
 

@@ -25,6 +25,7 @@ class SignupActivity: Activity() {
             // start sign in activity
             startActivity(Intent(this, SigninActivity::class.java))
         }
+
     }
 
 
