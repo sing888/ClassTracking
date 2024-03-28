@@ -1,106 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
+    <com.google.android.material.search.SearchBar
+        android:id="@+id/searchBar_room"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="@string/search" />
 
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btn_room_student"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_back" />
+            android:text="@string/student"
+            android:backgroundTint="@color/secondary" />
 
-        <TextView
-            android:layout_width="wrap_content"
+
+        <Button
+            android:id="@+id/btn_room_teacher"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="Create New Room"
-            android:textSize="20dp" />
+            android:text="@string/teacher" />
 
-    </LinearLayout>
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_room"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@+id/linearLayout3"
-        android:layout_marginTop="0dp"
-        android:gravity="center_horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="20dp" />
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/button1"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Create Room" />
-
-            <Button
-                android:id="@+id/button2"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Join Room" />
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
-    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/secondary"
+        app:srcCompat="@drawable/ic_add"
+        android:layout_margin="16dp" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="571dp"
-        android:layout_below="@+id/linearLayout4"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="46dp"
-        android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textfill_subject"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginVertical="10dp"
-            android:hint="Math">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textfill_room_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginVertical="10dp"
-            android:hint="Room Code">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-    </LinearLayout>
-
-
-</RelativeLayout>
+</LinearLayout>

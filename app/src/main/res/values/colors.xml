@@ -8,4 +8,5 @@
     <color name="logout">#FFBA1A1A</color>
     <color name="background">#FFD3D3D3</color>
     <color name="blur_background">#CCFFFFFF</color>
+    <color name="secondary">#FFD1E8D6</color>
 </resources>
