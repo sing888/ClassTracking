@@ -19,4 +19,9 @@
     <string name="search">Search</string>
     <string name="student">Student</string>
     <string name="teacher">Teacher</string>
+    <string name="create_new_room">Create New Room</string>
+    <string name="room_code">Room Code</string>
+    <string name="room_name">Room Name</string>
+    <string name="create">Create</string>
+
 </resources>
