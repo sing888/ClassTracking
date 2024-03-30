@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -22,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="Create New Room"
+            android:text="@string/create_new_room"
             android:textSize="20dp" />
 
     </LinearLayout>
@@ -31,19 +32,45 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="571dp"
-        android:layout_below="@+id/linearLayout4"
+        android:layout_below="@+id/linearLayout3"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="46dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="98dp"
         android:orientation="vertical">
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp">
+
+            <Button
+                android:id="@+id/btn_room_student"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/secondary"
+                android:text="@string/student" />
+
+
+            <Button
+                android:id="@+id/btn_room_teacher"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:text="@string/teacher" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textfill_subject"
+            android:id="@+id/input_create_room_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:hint="Math">
+            android:hint="@string/room_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -54,12 +81,12 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textfill_room_code"
+            android:id="@+id/input_create_room_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:hint="Room Code">
+            android:hint="@string/room_code">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="200dp"
@@ -70,4 +97,21 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:gravity="center">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sign_up_button"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            app:cornerRadius="36dp"
+            android:text="@string/create"
+            android:layout_margin="40dp"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/primary"/>
+    </LinearLayout>
+
+</RelativeLayout>
