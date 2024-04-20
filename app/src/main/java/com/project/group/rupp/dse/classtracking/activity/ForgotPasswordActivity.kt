@@ -21,6 +21,10 @@ class ForgotPasswordActivity: Activity(){
             startActivity(Intent(this, NewPasswordActivity::class.java))
         }
 
+        binding.backButton.setOnClickListener{
+            finish()
+        }
+
     }
 
     override fun onDestroy() {
