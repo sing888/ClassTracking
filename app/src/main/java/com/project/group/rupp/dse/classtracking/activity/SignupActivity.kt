@@ -7,12 +7,13 @@ import com.project.group.rupp.dse.classtracking.databinding.ActivitySignUpBindin
 
 class SignupActivity: Activity() {
 
-    private lateinit var binding: ActivitySignUpBinding
+    private var _binding: ActivitySignUpBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        _binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.signUpButton.setOnClickListener{
