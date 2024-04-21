@@ -28,19 +28,17 @@ class SigninActivity: AppCompatActivity(){
             var email = binding.textfillSignInEmail.editText?.text.toString()
             var password = binding.textfillSignInPassword.editText?.text.toString()
             if (email.isEmpty()){
-                email = "Please enter your email"
                 binding.textfillSignInEmail.error = "Please enter your email"
             }else{
                 binding.textfillSignInEmail.error = null
             }
             if (password.isEmpty()){
-                password = "Please enter your password"
                 binding.textfillSignInPassword.error = "Please enter your password"
             }else{
                 binding.textfillSignInPassword.error = null
             }
 
-            if (email != "Please enter your email" && password != "Please enter your password"){
+            if (email.isNotEmpty() && password.isNotEmpty()){
 
                 signinViewModel.signIn(this ,email, password)
 
