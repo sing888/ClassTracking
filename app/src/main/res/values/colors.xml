@@ -6,7 +6,7 @@
     <color name="primary">#FF296A47</color>
     <color name="error">#FFB00020</color>
     <color name="logout">#FFBA1A1A</color>
-    <color name="background">#FFD3D3D3</color>
+    <color name="background">#F1F1F1</color>
     <color name="blur_background">#CCFFFFFF</color>
     <color name="secondary">#FFD1E8D6</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.project.group.rupp.dse.classtracking.api
 
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
+import com.project.group.rupp.dse.classtracking.models.PostSignUp
 import retrofit2.http.GET
 import retrofit2.Call
 import com.project.group.rupp.dse.classtracking.models.Profile
@@ -19,6 +20,9 @@ public interface ApiService {
     // Add a new POST request to the API
     @POST("auth/sign_in")
     fun signIn(@Body signIn: PostSignIn): Call<Response<SignInData>>
+
+    @POST("auth/sign_up")
+    fun signUp(@Body signUp: PostSignUp): Call<Boolean>
 
 
 
