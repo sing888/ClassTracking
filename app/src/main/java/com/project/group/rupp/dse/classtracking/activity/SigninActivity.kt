@@ -40,16 +40,19 @@ class SigninActivity: AppCompatActivity(){
                 binding.textfillSignInPassword.error = null
             }
 
-            if (!(email.isEmpty() && password.isEmpty())){
+            if (email != "Please enter your email" && password != "Please enter your password"){
 
                 signinViewModel.signIn(this ,email, password)
 
                 signinViewModel.signinModelUiState.observe(this, Observer { uiState ->
                     when (uiState.status) {
                         UiStateStatus.loading -> {
-
+                            binding.signInButton.visibility = android.view.View.GONE
+                            binding.signInLoading.visibility = android.view.View.VISIBLE
                         }
                         UiStateStatus.success -> {
+                            binding.signInLoading.visibility = android.view.View.GONE
+                            binding.signInButton.visibility = android.view.View.VISIBLE
                             val token = uiState.data?.data?.token.toString()
                             PreferenceUtils.saveToken(this, token)
                             // start main activity
@@ -58,7 +61,9 @@ class SigninActivity: AppCompatActivity(){
 
                         }
                         UiStateStatus.error -> {
-                            Toast.makeText(this, uiState.message, Toast.LENGTH_SHORT).show()
+                            binding.signInLoading.visibility = android.view.View.GONE
+                            binding.signInButton.visibility = android.view.View.VISIBLE
+                            Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
                         }
                     }
                 })

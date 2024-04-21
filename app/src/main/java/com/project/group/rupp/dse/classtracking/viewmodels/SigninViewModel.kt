@@ -4,16 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.project.group.rupp.dse.classtracking.RetrofitInstance
-import com.project.group.rupp.dse.classtracking.models.GetSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
+import com.project.group.rupp.dse.classtracking.models.Response
+import com.project.group.rupp.dse.classtracking.models.SignInData
 import com.project.group.rupp.dse.classtracking.models.UiState
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 
 
 
 class SigninViewModel: ViewModel() {
-    private var _signinModelUiState = MutableLiveData<UiState<GetSignIn>>()
-    val signinModelUiState: LiveData<UiState<GetSignIn>> get() = _signinModelUiState
+    private var _signinModelUiState = MutableLiveData<UiState<Response<SignInData>>>()
+    val signinModelUiState: LiveData<UiState<Response<SignInData>>> get() = _signinModelUiState
 
     fun signIn(context: Context , email: String, password: String){
         _signinModelUiState.value = UiState(UiStateStatus.loading)
@@ -32,8 +33,8 @@ class SigninViewModel: ViewModel() {
 
         var apiService = RetrofitInstance.create(context)
 
-        apiService.signIn(signIn).enqueue(object : retrofit2.Callback<GetSignIn>{
-            override fun onResponse(call: retrofit2.Call<GetSignIn>, response: retrofit2.Response<GetSignIn>) {
+        apiService.signIn(signIn).enqueue(object : retrofit2.Callback<Response<SignInData>>{
+            override fun onResponse(call: retrofit2.Call<Response<SignInData>>, response: retrofit2.Response<Response<SignInData>>) {
                 if(response.isSuccessful){
                     _signinModelUiState.value = UiState(UiStateStatus.success, data = response.body())
                 }else{
@@ -41,7 +42,7 @@ class SigninViewModel: ViewModel() {
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<GetSignIn>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<Response<SignInData>>, t: Throwable) {
                 _signinModelUiState.value = UiState(UiStateStatus.error, message = "Error: ${t.message}")
             }
         })
