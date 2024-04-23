@@ -23,5 +23,7 @@
     <string name="room_code">Room Code</string>
     <string name="room_name">Room Name</string>
     <string name="create">Create</string>
+    <string name="next">Next</string>
+    <string name="delete">Delete</string>
 
 </resources>

@@ -31,11 +31,9 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="571dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout3"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="2dp"
-        android:layout_marginBottom="98dp"
         android:orientation="vertical">
 
         <com.google.android.material.button.MaterialButtonToggleGroup
@@ -80,38 +78,72 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_create_room_code"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="25dp"
-            android:layout_marginVertical="10dp"
-            android:hint="@string/room_code">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="200dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_create_room_code"
+                android:layout_width="213dp"
                 android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginVertical="10dp"
+                android:hint="@string/room_code"
+                android:orientation="horizontal">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/menu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp">
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
         android:gravity="center">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_up_button"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            app:cornerRadius="36dp"
-            android:text="@string/create"
-            android:layout_margin="40dp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/primary"/>
+            android:layout_margin="40dp"
+            android:backgroundTint="@color/primary"
+            android:text="@string/next"
+            app:cornerRadius="36dp" />
     </LinearLayout>
 
 </RelativeLayout>
