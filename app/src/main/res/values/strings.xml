@@ -5,6 +5,7 @@
     <string name="menu_achieve">Achieve</string>
     <string name="menu_profile">Profile</string>
     <string name="sign_in">Sign in</string>
+    <string name="username">Username</string>
     <string name="sign_up">Sign up</string>
     <string name="log_out">Log out</string>
     <string name="email">Email</string>
@@ -25,5 +26,8 @@
     <string name="create">Create</string>
     <string name="next">Next</string>
     <string name="delete">Delete</string>
+    <string name="power_by">Power by</string>
+    <string name="mobile_app_development_ii">Mobile App Development II</string>
+
 
 </resources>

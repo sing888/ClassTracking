@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private var _binding : ActivityMainBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,21 +25,22 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.replace(fragmentContainer.id, RoomFragment())
         fragmentManager.commit()
 
-
-        binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+        binding.mainBottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.menu_room -> {
                     val fragmentManager = supportFragmentManager.beginTransaction()
                     fragmentManager.replace(fragmentContainer.id, RoomFragment())
                     fragmentManager.commit()
                     true
                 }
+
                 R.id.menu_achieve -> {
                     val fragmentManager = supportFragmentManager.beginTransaction()
                     fragmentManager.replace(fragmentContainer.id, AchieveFragment())
                     fragmentManager.commit()
                     true
                 }
+
                 R.id.menu_profile -> {
                     val fragmentManager = supportFragmentManager.beginTransaction()
                     fragmentManager.replace(fragmentContainer.id, ProfileFragment())
@@ -49,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
     }
 
     override fun onDestroy() {

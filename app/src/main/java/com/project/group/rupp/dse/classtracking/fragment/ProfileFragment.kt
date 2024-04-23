@@ -1,5 +1,6 @@
 package com.project.group.rupp.dse.classtracking.fragment
 
+import PreferenceUtils
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.SigninActivity
 import com.project.group.rupp.dse.classtracking.databinding.FragmentProfileBinding
 import com.project.group.rupp.dse.classtracking.models.Profile
+import com.project.group.rupp.dse.classtracking.models.UiState
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.ProfileViewModel
 import com.squareup.picasso.Picasso
@@ -37,37 +39,41 @@ class ProfileFragment: Fragment(){
         _binding = FragmentProfileBinding.bind(view)
 
         binding.logoutButton.setOnClickListener{
+            PreferenceUtils.clearToken(requireContext())
             // start sign in activity
             startActivity(Intent(requireContext(), SigninActivity::class.java))
+
         }
 
         profileViewModel.profileModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
-            when(uiState.status){
+            when (uiState.status) {
                 UiStateStatus.loading -> {
                     binding.loadingLayout.visibility = View.VISIBLE
-                    binding.loadingProgress.visibility = View.VISIBLE
                 }
                 UiStateStatus.success -> {
                     binding.loadingLayout.visibility = View.GONE
-                    binding.loadingProgress.visibility = View.GONE
-                    loadData(uiState.data!!)
+                    val profile_url = uiState.data?.data?.profile_url
+                    if (profile_url != null) {
+                        Picasso.get().load(profile_url).into(binding.profilePicture)
+                    }
+                    else {
+                        binding.profilePicture.setImageResource(R.drawable.ic_profile)
+                    }
+
+                    binding.username.text = uiState.data?.data?.username
+                    binding.profileEmailEdit.setText(uiState.data?.data?.email)
                 }
                 UiStateStatus.error -> {
                     binding.loadingLayout.visibility = View.GONE
-                    binding.loadingProgress.visibility = View.GONE
                     Toast.makeText(requireContext(), uiState.message, Toast.LENGTH_SHORT).show()
                 }
             }
         })
 
-        profileViewModel.getProfile()
+        profileViewModel.getProfile(requireContext())
+
     }
 
-    private fun loadData(data: Profile){
-        Picasso.get().load(data.profilePicture).into(binding.profilePicture)
-        Picasso.get().load(data.coverPicture).into(binding.coverPicture)
-        binding.username.text = data.firstName + " " + data.lastName
-    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -21,6 +21,10 @@ class NewPasswordActivity: Activity(){
             startActivity(Intent(this, SigninActivity::class.java))
         }
 
+        binding.backButton.setOnClickListener{
+            finish()
+        }
+
     }
 
     override fun onDestroy() {
