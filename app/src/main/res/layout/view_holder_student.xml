@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_vertical"
+    android:background="@color/secondary">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            app:cardBackgroundColor="@color/secondary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="1"
+                android:textSize="20sp"
+                tools:ignore="HardcodedText" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="40dp"
+            android:layout_toEndOf="@+id/cardView"
+            android:background="@color/secondary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:background="@color/secondary"
+                android:text="Student_Name"
+                tools:ignore="HardcodedText" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="20dp"
+            app:cardBackgroundColor="@color/secondary"
+            android:layout_toEndOf="@+id/cardView2">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/delete" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
