@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item
+            android:id="@+id/room_news"
+            android:title="@string/room_news"
+            android:icon="@drawable/ic_news"/>
+        <item
+            android:id="@+id/room_attendance"
+            android:title="@string/room_attendance"
+            android:icon="@drawable/ic_attendance"/>
+        <item
+            android:id="@+id/room_score"
+            android:title="@string/room_score"
+            android:icon="@drawable/ic_score"/>
+        <item
+            android:id="@+id/room_more"
+            android:title="@string/room_more"
+            android:icon="@drawable/ic_more_hor"/>
+
+</menu>

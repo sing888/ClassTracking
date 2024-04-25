@@ -30,5 +30,10 @@
     <string name="mobile_app_development_ii">Mobile App Development II</string>
     <string name="achieve_classroom">Achieve Classroom</string>
 
+    <string name="room_news">News</string>
+    <string name="room_attendance">Attendance</string>
+    <string name="room_score">Score</string>
+    <string name="room_more">More</string>
+
 
 </resources>
