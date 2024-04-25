@@ -2,6 +2,7 @@ package com.project.group.rupp.dse.classtracking.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecyclerListener
 import com.project.group.rupp.dse.classtracking.databinding.ViewHolderAchieveBinding
@@ -19,6 +20,7 @@ class AchieveAdapter : RecyclerView.Adapter<AchieveViewHolder>() {
     public fun setListener(listener: RecyclerListener) {
         this.listener = listener
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AchieveViewHolder {
         val binding = ViewHolderAchieveBinding.inflate(LayoutInflater.from(parent.context), parent, false)

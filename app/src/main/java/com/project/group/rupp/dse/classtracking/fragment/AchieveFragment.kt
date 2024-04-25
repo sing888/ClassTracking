@@ -1,6 +1,8 @@
 package com.project.group.rupp.dse.classtracking.fragment
 
 import android.os.Bundle
+import android.text.Layout
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,11 +43,18 @@ class AchieveFragment: Fragment() {
             when (uiState.status) {
                 UiStateStatus.loading -> {
                     binding.progressLayoutAchieve.visibility = View.VISIBLE
+                    binding.noAchieveClassroomFound.visibility = View.GONE
                 }
                 UiStateStatus.success -> {
                     binding.progressLayoutAchieve.visibility = View.GONE
                     data = uiState.data!!.data!!
-                    if (data != null) {
+                    if (data.isEmpty()) {
+                        binding.noAchieveClassroomFound.visibility = View.VISIBLE
+                        binding.noAchieveClassroomFound.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                        binding.noAchieveClassroomFound.text = "No achieve classroom found"
+                    } else{
+                        binding.noAchieveClassroomFound.visibility = View.VISIBLE
+                        binding.noAchieveClassroomFound.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
                         adapter.setDataset(data)
                     }
 
@@ -53,6 +62,9 @@ class AchieveFragment: Fragment() {
                 UiStateStatus.error -> {
                     binding.progressLayoutAchieve.visibility = View.GONE
                     Toast.makeText(requireContext(), uiState.message, Toast.LENGTH_SHORT).show()
+                    binding.noAchieveClassroomFound.visibility = View.VISIBLE
+                    binding.noAchieveClassroomFound.textAlignment = View.TEXT_ALIGNMENT_CENTER
+                    binding.noAchieveClassroomFound.text = "Something went wrong!"
                 }
             }
         })

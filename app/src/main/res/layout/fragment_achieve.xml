@@ -13,6 +13,18 @@
         android:layout_marginHorizontal="20dp"
         android:hint="@string/search" />
 
+    <TextView
+        android:id="@+id/no_achieve_classroom_found"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/achieve_classroom"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:paddingLeft="20dp"
+        android:textAlignment="textStart"
+        android:visibility="visible"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -7,9 +7,9 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:backgroundTint="@color/secondary"
+        android:backgroundTint="@color/background"
         app:cardCornerRadius="10dp">
 
         <LinearLayout
@@ -62,8 +62,8 @@
 
             <ImageView
                 android:id="@+id/room_more"
-                android:layout_width="30dp"
-                android:layout_height="50dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:src="@drawable/ic_more" />

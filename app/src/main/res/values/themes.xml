@@ -2,8 +2,11 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ClassTracking" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-<!--        <item name="colorPrimary">@color/primary</item>-->
-<!--        <item name="colorSecondary">@color/secondary</item>-->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/primary</item>
+        <!-- Darker variant of the primary color -->
+        <item name="colorPrimaryDark">@color/primary</item>
+
     </style>
 
     <style name="Theme.ClassTracking" parent="Base.Theme.ClassTracking" />
