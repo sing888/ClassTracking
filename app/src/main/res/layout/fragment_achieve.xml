@@ -51,7 +51,8 @@
                 android:id="@+id/progress_bar_achieve"
                 android:visibility="visible"
                 android:indeterminate="true"
-                app:indicatorColor="@color/primary" />
+                app:indicatorColor="@color/primary"
+                app:trackColor="@color/secondary" />
 
         </FrameLayout>
 

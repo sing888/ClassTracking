@@ -1,5 +1,6 @@
 package com.project.group.rupp.dse.classtracking.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Layout
 import android.view.Gravity
@@ -13,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.project.group.rupp.dse.classtracking.R
+import com.project.group.rupp.dse.classtracking.activity.RoomActivity
 import com.project.group.rupp.dse.classtracking.adapter.AchieveAdapter
 import com.project.group.rupp.dse.classtracking.databinding.FragmentAchieveBinding
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
@@ -80,7 +82,15 @@ class AchieveFragment: Fragment() {
 
         adapter.setListener { index: RecyclerView.ViewHolder? ->
             var room = data[index!!.adapterPosition]
-            Toast.makeText(requireContext(), "Room_id: ${room.classroom_id}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), "Room_id: ${room.classroom_id}", Toast.LENGTH_SHORT).show()
+            var intent: Intent = Intent(this.requireContext(), RoomActivity::class.java)
+            intent.putExtra("room_type", "achieve")
+            intent.putExtra("room_id", room.classroom_id)
+            intent.putExtra("room_name", room.name)
+            intent.putExtra("room_code", room.room_code)
+
+            startActivity(intent)
+
         }
 
     }

@@ -109,7 +109,8 @@
             android:layout_height="wrap_content"
             app:indicatorColor="@color/primary"
             android:layout_gravity="center"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            app:trackColor="@color/secondary" />
 
     </FrameLayout>
 
