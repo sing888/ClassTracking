@@ -50,7 +50,9 @@
         android:layout_height="75dp"
         android:id="@+id/room_bottom_navigation"
         app:menu="@menu/activity_room"
-        app:labelVisibilityMode="labeled" />
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"/>
 
 
 
