@@ -103,6 +103,10 @@ class RoomFragment : Fragment() {
             startActivity(intent)
         }
 
+        binding.floatingActionButton.setOnClickListener {
+
+        }
+
     }
 
 
