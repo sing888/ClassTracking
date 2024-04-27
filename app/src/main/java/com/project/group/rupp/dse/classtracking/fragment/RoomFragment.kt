@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
 import com.project.group.rupp.dse.classtracking.adapter.RoomAdapter
@@ -92,7 +93,6 @@ class RoomFragment : Fragment() {
 
         adapter.setListener{ index: RecyclerView.ViewHolder? ->
             var room = data[index!!.adapterPosition]
-//             Toast.makeText(requireContext(), "Room_id: ${room.classroom_id}", Toast.LENGTH_SHORT).show()
             // give text to next screen with setextra
             var intent: Intent = Intent(requireContext(), RoomActivity::class.java)
             intent.putExtra("room_id", room.classroom_id)
@@ -104,7 +104,29 @@ class RoomFragment : Fragment() {
         }
 
         binding.floatingActionButton.setOnClickListener {
+            when(binding.floatingButtonMenuLayout.visibility){
+                View.VISIBLE -> {
+                    binding.floatingButtonMenuLayout.visibility = View.GONE
+                    binding.floatingActionButton.setImageResource(R.drawable.ic_add)
+                }
+                View.GONE -> {
+                    binding.floatingButtonMenuLayout.visibility = View.VISIBLE
+                    binding.floatingActionButton.setImageResource(R.drawable.ic_x)
+                }
+            }
+        }
 
+        binding.floatingButtonMenuLayout.setOnClickListener {
+            binding.floatingButtonMenuLayout.visibility = View.GONE
+            binding.floatingActionButton.setImageResource(R.drawable.ic_add)
+        }
+
+        binding.btnCreateNewRoom.setOnClickListener {
+            Snackbar.make(view, "Create new room", Snackbar.LENGTH_SHORT).show()
+        }
+
+        binding.btnJoinNewRoom.setOnClickListener {
+            Snackbar.make(view, "Join new room", Snackbar.LENGTH_SHORT).show()
         }
 
     }
