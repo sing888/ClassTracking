@@ -28,12 +28,21 @@
     <string name="delete">Delete</string>
     <string name="power_by">Power by</string>
     <string name="mobile_app_development_ii">Mobile App Development II</string>
+    <string name="add">Add</string>
+    <string name="join_room">Join Room</string>
+    <string name="create_room">Create Room</string>
+    <string name="name_in_room">Name in Room (Optional)</string>
+    <string name="private_room_code_warning">* This room is private. \n   Please enter the code to join this room.</string>
+    <string name="join">Join</string>
+    <string name="title">Title</string>
+    <string name="deadline">Deadline</string>
+    <string name="description">Description</string>
+    <string name="type_sth">Type something here…</string>
+    <string name="datetime">MM/DD/YYYY</string>
+    <string name="post">Post</string>
     <string name="achieve_classroom">Achieve Classroom</string>
-
     <string name="room_news">News</string>
     <string name="room_attendance">Attendance</string>
     <string name="room_score">Score</string>
     <string name="room_more">More</string>
-
-
 </resources>
