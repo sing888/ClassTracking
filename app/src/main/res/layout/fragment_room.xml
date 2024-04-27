@@ -84,6 +84,38 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginHorizontal="20dp" />
 
+            <RelativeLayout
+                android:id="@+id/floating_button_menu_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_create_new_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="150dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:backgroundTint="@color/md_theme_primary"
+                    android:padding="16dp"
+                    android:text="+ Create New Room" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_join_new_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="# Join New Room"
+                    android:padding="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="85dp"
+                    android:backgroundTint="@color/md_theme_primary" />
+
+            </RelativeLayout>
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/floating_action_button"
                 android:layout_width="wrap_content"
