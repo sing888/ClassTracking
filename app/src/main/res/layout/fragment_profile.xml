@@ -94,16 +94,6 @@
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logout_button"
-            android:layout_width="250dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/logout"
-            android:text="@string/log_out"
-            android:textColor="@color/white" />
-
     </LinearLayout>
 
     <FrameLayout
@@ -111,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blur_background"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/loading_progress"
@@ -119,8 +109,20 @@
             android:layout_height="wrap_content"
             app:indicatorColor="@color/primary"
             android:layout_gravity="center"
-            android:indeterminate="true"/>
+            android:indeterminate="true"
+            app:trackColor="@color/secondary" />
 
     </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logout_button"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/logout"
+        android:text="@string/log_out"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

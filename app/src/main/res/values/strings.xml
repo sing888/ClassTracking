@@ -40,5 +40,9 @@
     <string name="type_sth">Type something here…</string>
     <string name="datetime">MM/DD/YYYY</string>
     <string name="post">Post</string>
-
+    <string name="achieve_classroom">Achieve Classroom</string>
+    <string name="room_news">News</string>
+    <string name="room_attendance">Attendance</string>
+    <string name="room_score">Score</string>
+    <string name="room_more">More</string>
 </resources>

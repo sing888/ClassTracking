@@ -18,8 +18,9 @@
         android:id="@+id/main_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        app:menu="@menu/activity_main" />
-
-
+        app:menu="@menu/activity_main"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black" />
 
 </LinearLayout>
