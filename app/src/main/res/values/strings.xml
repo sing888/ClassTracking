@@ -40,5 +40,17 @@
     <string name="type_sth">Type something here…</string>
     <string name="datetime">MM/DD/YYYY</string>
     <string name="post">Post</string>
+    <string name="edit_students">Edit Students</string>
+    <string name="see_details">See Details</string>
+    <string name="student_name">Student Name</string>
+    <string name="subject">Subject</string>
+    <string name="add_subject">Add Subject</string>
+    <string name="calculate">Calculate</string>
+    <string name="all">All</string>
+    <string name="add_assignment">Add Assignment</string>
+    <string name="save">Save</string>
+    <string name="assignment_name">Assignment Name</string>
+    <string name="score">Score</string>
+    <string name="new_students">New Students</string>
 
 </resources>
