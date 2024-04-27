@@ -50,7 +50,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/secondary"
-                android:text="@string/student" />
+                android:text="@string/create_room" />
 
 
             <Button
@@ -58,7 +58,7 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:text="@string/teacher" />
+                android:text="@string/join_room" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -121,8 +121,42 @@
         android:layout_above="@+id/linearLayout"
         android:layout_below="@+id/linearLayout2"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/student"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="center_vertical"
+                android:layout_marginStart="25dp"
+                android:layout_marginVertical="8dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_student"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/primary"
+                android:text="@string/add"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                app:cornerRadius="36dp" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_room"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="1" />
 
 
     </LinearLayout>
@@ -142,7 +176,7 @@
             android:layout_gravity="center"
             android:layout_margin="40dp"
             android:backgroundTint="@color/primary"
-            android:text="@string/next"
+            android:text="@string/create"
             app:cornerRadius="36dp" />
     </LinearLayout>
 
