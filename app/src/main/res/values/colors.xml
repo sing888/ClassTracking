@@ -9,7 +9,7 @@
     <color name="background">#F1F1F1</color>
     <color name="blur_background">#CCFFFFFF</color>
     <color name="secondary">#FFD1E8D6</color>
-
+    <color name="line">#FFC0C9C0</color>
 
     <color name="md_theme_primary">#0E5534</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

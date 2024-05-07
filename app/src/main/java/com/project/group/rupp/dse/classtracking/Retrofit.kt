@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://backclasstracking-9o5eu1fu.b4a.run/"
+    private const val BASE_URL = "https://classtracking-back.onrender.com/"
 
     fun create(context: Context): ApiService {
         val interceptor = Interceptor { chain ->

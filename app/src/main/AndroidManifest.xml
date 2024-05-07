@@ -48,6 +48,8 @@
             android:exported="true"/>
         <activity android:name=".activity.RoomActivity"
             android:exported="true"/>
+        <activity android:name=".activity.CreateNewRoomActivity"
+            android:exported="true"/>
 
     </application>
 
