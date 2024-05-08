@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
+import com.project.group.rupp.dse.classtracking.activity.CreateNewRoomActivity
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
 import com.project.group.rupp.dse.classtracking.adapter.RoomAdapter
 import com.project.group.rupp.dse.classtracking.databinding.FragmentRoomBinding
@@ -122,11 +123,15 @@ class RoomFragment : Fragment() {
         }
 
         binding.btnCreateNewRoom.setOnClickListener {
-            Snackbar.make(view, "Create new room", Snackbar.LENGTH_SHORT).show()
+            var intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            intent.putExtra("header", "Create New Room")
+            startActivity(intent)
         }
 
         binding.btnJoinNewRoom.setOnClickListener {
-            Snackbar.make(view, "Join new room", Snackbar.LENGTH_SHORT).show()
+            var intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            intent.putExtra("header", "Join New Room")
+            startActivity(intent)
         }
 
     }

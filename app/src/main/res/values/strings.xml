@@ -57,4 +57,9 @@
     <string name="room_attendance">Attendance</string>
     <string name="room_score">Score</string>
     <string name="room_more">More</string>
+    <string name="status">Status</string>
+    <string name="room_password">Room Password</string>
+    <string name="room_password_warning">* This room is private. \n   Please enter the password to join this room.</string>
+    <string name="complete">Complete</string>
+    <string name="Home">Home</string>
 </resources>
