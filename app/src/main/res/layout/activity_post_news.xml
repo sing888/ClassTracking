@@ -131,7 +131,7 @@
             android:layout_margin="40dp"
             android:backgroundTint="@color/primary"
             android:text="@string/post"
-            app:cornerRadius="36dp" />
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
 </RelativeLayout>
