@@ -6,6 +6,6 @@ import com.project.group.rupp.dse.classtracking.databinding.ViewHolderNewsBindin
 class NewsViewHolder(private val binding: ViewHolderNewsBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(news: String){
-//            binding.tvTitle.text = news
+            binding.tvTitle.text = news
         }
 }
