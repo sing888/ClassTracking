@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.databinding.ActivityRoomBinding
+import com.project.group.rupp.dse.classtracking.fragment.MoreRoomFragment
 import com.project.group.rupp.dse.classtracking.fragment.NewsFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentAttendanceFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentScoreFragment
@@ -88,7 +89,9 @@ class RoomActivity: AppCompatActivity() {
                 }
 
                 R.id.room_more -> {
-                    // Respond to navigation item 4 click
+                    val fragmentManager = supportFragmentManager.beginTransaction()
+                    fragmentManager.replace(fragmentContainer.id, MoreRoomFragment())
+                    fragmentManager.commit()
                     true
                 }
 
