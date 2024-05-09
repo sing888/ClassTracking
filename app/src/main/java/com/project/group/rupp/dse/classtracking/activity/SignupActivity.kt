@@ -101,6 +101,4 @@ class SignupActivity: AppCompatActivity() {
         super.onDestroy()
         _binding = null
     }
-
-
 }
