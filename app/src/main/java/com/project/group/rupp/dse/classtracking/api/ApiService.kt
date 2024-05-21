@@ -5,6 +5,8 @@ import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.GetRoom
+import com.project.group.rupp.dse.classtracking.models.GetStudentAttendance
+import com.project.group.rupp.dse.classtracking.models.GetStudentAttendanceDetail
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
@@ -15,6 +17,8 @@ import com.project.group.rupp.dse.classtracking.models.Response
 import com.project.group.rupp.dse.classtracking.models.SignInData
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
+import retrofit2.http.Url
 
 public interface ApiService {
     @GET("auth/sign_in/token")
@@ -44,6 +48,12 @@ public interface ApiService {
 
     @POST("classroom/join")
     fun joinRoom(@Body postJoinRoom: PostJoinNewRoom): Call<Response<GetJoinNewRoom>>
+
+    @GET("student/attendance/percentage")
+    fun getStudentAttendance(@Query("classroom_id") classroom_id: String): Call<Response<GetStudentAttendance>>
+
+    @GET("student/attendance")
+    fun getStudentAttendanceDetail(@Query("classroom_id") classroom_id: String): Call<Response<List<GetStudentAttendanceDetail>>>
 
 
 
