@@ -4,6 +4,7 @@ import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
+import com.project.group.rupp.dse.classtracking.models.GetMember
 import com.project.group.rupp.dse.classtracking.models.GetMemberID
 import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.models.GetStudentAttendance
@@ -79,6 +80,11 @@ public interface ApiService {
         @Query("classroom_id") classroom_id: String,
         @Query("member_id") member_id: String
     ): Call<Response<GetStudentScoreDetail>>
+
+    @GET("teacher/member")
+    fun getMember(
+        @Query("classroom_id") classroom_id: String
+    ): Call<Response<List<GetMember>>>
 
 
 
