@@ -90,7 +90,7 @@ class StudentScoreFragment: Fragment(){
                     }
                 }
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "${it.message}", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
@@ -109,7 +109,7 @@ class StudentScoreFragment: Fragment(){
                     binding.scoreStudentRankMax.text = "All Student: "+data?.member_amount.toString()
                 }
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "${it.message}", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
@@ -133,7 +133,7 @@ class StudentScoreFragment: Fragment(){
                     }
                 }
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(binding.root, "${it.message}", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
