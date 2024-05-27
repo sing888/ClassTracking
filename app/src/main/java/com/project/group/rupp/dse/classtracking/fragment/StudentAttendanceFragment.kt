@@ -64,13 +64,17 @@ class StudentAttendanceFragment: Fragment(){
         studentAttendanceViewModel.attendanceDetailUiState.observe(viewLifecycleOwner, Observer{ uiState ->
             when (uiState.status) {
                 UiStateStatus.loading -> {
-                    Snackbar.make(binding.root, "Loading", Snackbar.LENGTH_SHORT).show()
+                    binding.attendanceStudentNoData.visibility = View.GONE
+                    binding.attendanceStudentCardRecyclerView.visibility = View.GONE
                 }
                 UiStateStatus.success -> {
+                    binding.attendanceStudentNoData.visibility = View.GONE
+                    binding.attendanceStudentCardRecyclerView.visibility = View.VISIBLE
                     adapter.setDataset(uiState.data?.data!!)
                 }
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    binding.attendanceStudentNoData.visibility = View.VISIBLE
+                    binding.attendanceStudentCardRecyclerView.visibility = View.GONE
                 }
             }
         })

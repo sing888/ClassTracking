@@ -4,9 +4,13 @@ import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
+import com.project.group.rupp.dse.classtracking.models.GetMemberID
 import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.models.GetStudentAttendance
 import com.project.group.rupp.dse.classtracking.models.GetStudentAttendanceDetail
+import com.project.group.rupp.dse.classtracking.models.GetStudentScore
+import com.project.group.rupp.dse.classtracking.models.GetStudentScoreDetail
+import com.project.group.rupp.dse.classtracking.models.GetStudentScoreList
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
@@ -18,7 +22,6 @@ import com.project.group.rupp.dse.classtracking.models.SignInData
 import retrofit2.http.Body
 import retrofit2.http.POST
 import retrofit2.http.Query
-import retrofit2.http.Url
 
 public interface ApiService {
     @GET("auth/sign_in/token")
@@ -54,6 +57,31 @@ public interface ApiService {
 
     @GET("student/attendance")
     fun getStudentAttendanceDetail(@Query("classroom_id") classroom_id: String): Call<Response<List<GetStudentAttendanceDetail>>>
+
+    @GET("student/score/account/member_id")
+    fun getMemberId(
+        @Query("classroom_id") classroom_id: String
+    ): Call<Response<GetMemberID>>
+
+    @GET("student/score")
+    fun getStudentScore(
+        @Query("classroom_id") classroom_id: String,
+        @Query("member_id") member_id: String
+    ): Call<Response<GetStudentScore>>
+
+    @GET("student/score/list")
+    fun getStudentScoreList(
+        @Query("classroom_id") classroom_id: String
+    ): Call<Response<List<GetStudentScoreList>>>
+
+    @GET("student/score/percentage")
+    fun getStudentScoreDetail(
+        @Query("classroom_id") classroom_id: String,
+        @Query("member_id") member_id: String
+    ): Call<Response<GetStudentScoreDetail>>
+
+
+
 
 
 

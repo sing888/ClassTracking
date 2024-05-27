@@ -34,8 +34,10 @@ class RoomActivity: AppCompatActivity() {
         val roomname = intent.getStringExtra("room_name")
         var roomcode = intent.getStringExtra("room_code")
         var roompassword = intent.getStringExtra("room_password")
+        var account_id = intent.getStringExtra("account_id")
 
         roomViewModel.setRoomId(roomid!!)
+        roomViewModel.setAccountId(account_id!!)
         
         val fragmentContainer = binding.llFragmentContainer
         val fragmentManager = supportFragmentManager.beginTransaction()
@@ -44,9 +46,6 @@ class RoomActivity: AppCompatActivity() {
 
 
         binding.roomName.text = roomname
-//        binding.roomTest.text =
-//            "Room Type: $roomtype\nRoom ID: $roomid\nRoom Name: $roomname\nRoom Code: $roomcode\nRoom Password: $roompassword"
-
         binding.roomBack.setOnClickListener() {
             finish()
         }

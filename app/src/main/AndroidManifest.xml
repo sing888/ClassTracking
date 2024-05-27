@@ -50,6 +50,9 @@
             android:exported="true"/>
         <activity android:name=".activity.CreateNewRoomActivity"
             android:exported="true"/>
+        <activity android:name=".activity.StudentScoreDetail"
+            android:exported="true"/>
+
 
     </application>
 

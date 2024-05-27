@@ -14,7 +14,7 @@ class SplashViewModel: ViewModel() {
     fun checkToken(context: Context){
         _splashModelUiState.value = UiState(UiStateStatus.loading)
 
-        var apiService = RetrofitInstance.create(context)
+        val apiService = RetrofitInstance.create(context)
 
 
         apiService.checkToken().enqueue(object : retrofit2.Callback<Boolean>{

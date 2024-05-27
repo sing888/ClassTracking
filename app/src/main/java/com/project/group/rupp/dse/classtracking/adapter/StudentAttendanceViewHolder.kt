@@ -14,10 +14,12 @@ class StudentAttendanceViewHolder(private val binding: ViewHolderAttendanceBindi
             if (data.active) {
                 binding.attendanceStudentCheckbox.checkedState = MaterialCheckBox.STATE_CHECKED
                 binding.attendanceStudentCheckbox.isErrorShown = false
+                binding.attendanceStudentCheckbox.isClickable = false
             }else{
                 binding.attendanceStudentCheckbox.checkedState = MaterialCheckBox.STATE_INDETERMINATE
                 binding.attendanceStudentCheckbox.isErrorShown = true
                 binding.attendanceStudentCardView.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.md_theme_errorContainer)
+                binding.attendanceStudentCheckbox.isClickable = false
             }
         }
 }
