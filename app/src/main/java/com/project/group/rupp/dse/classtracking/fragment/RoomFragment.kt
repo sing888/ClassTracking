@@ -90,14 +90,14 @@ class RoomFragment : Fragment() {
             }
         })
 
-        var layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewRoom.layoutManager = layoutManager
         binding.recyclerViewRoom.adapter = adapter
 
         adapter.setListener{ index: RecyclerView.ViewHolder? ->
-            var room = data[index!!.adapterPosition]
+            val room = data[index!!.adapterPosition]
             // give text to next screen with setextra
-            var intent: Intent = Intent(requireContext(), RoomActivity::class.java)
+            val intent: Intent = Intent(requireContext(), RoomActivity::class.java)
             intent.putExtra("room_id", room.classroom_id)
             intent.putExtra("room_name", room.name)
             intent.putExtra("room_description", room.room_code)
@@ -126,13 +126,13 @@ class RoomFragment : Fragment() {
         }
 
         binding.btnCreateNewRoom.setOnClickListener {
-            var intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            val intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
             intent.putExtra("header", "Create New Room")
             startActivity(intent)
         }
 
         binding.btnJoinNewRoom.setOnClickListener {
-            var intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            val intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
             intent.putExtra("header", "Join New Room")
             startActivity(intent)
         }
