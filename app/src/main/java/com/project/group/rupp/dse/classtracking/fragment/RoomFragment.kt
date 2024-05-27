@@ -8,13 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.compose.ui.text.style.TextIndent
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.CreateNewRoomActivity
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
@@ -22,6 +20,7 @@ import com.project.group.rupp.dse.classtracking.adapter.RoomAdapter
 import com.project.group.rupp.dse.classtracking.databinding.FragmentRoomBinding
 import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
+import com.project.group.rupp.dse.classtracking.viewmodels.MainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomViewModel
 
 class RoomFragment : Fragment() {
@@ -29,6 +28,9 @@ class RoomFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val roomViewModel: RoomViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
+
+    private var account_id: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,6 +103,7 @@ class RoomFragment : Fragment() {
             intent.putExtra("room_description", room.room_code)
             intent.putExtra("room_password", room.password)
             intent.putExtra("room_type", roomtype)
+            intent.putExtra("account_id", account_id)
             startActivity(intent)
         }
 
@@ -133,6 +136,10 @@ class RoomFragment : Fragment() {
             intent.putExtra("header", "Join New Room")
             startActivity(intent)
         }
+
+        mainViewModel.account_id.observe(viewLifecycleOwner, Observer {
+            account_id = it
+        })
 
     }
 

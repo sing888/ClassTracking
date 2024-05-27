@@ -62,4 +62,12 @@
     <string name="room_password_warning">* This room is private. \n   Please enter the password to join this room.</string>
     <string name="complete">Complete</string>
     <string name="Home">Home</string>
+    <string name="noAttendance">No attendance check yet.</string>
+    <string name="absent">Absent</string>
+    <string name="time">YYYY/MM/DD</string>
+    <string name="average_score">Average Score</string>
+    <string name="rank">Rank</string>
+    <string name="details">Details</string>
+    <string name="subject_average_score">Subject Average Score</string>
+
 </resources>
