@@ -69,5 +69,6 @@
     <string name="rank">Rank</string>
     <string name="details">Details</string>
     <string name="subject_average_score">Subject Average Score</string>
+    <string name="member">Member</string>
 
 </resources>
