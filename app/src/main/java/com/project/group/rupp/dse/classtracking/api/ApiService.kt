@@ -12,6 +12,7 @@ import com.project.group.rupp.dse.classtracking.models.GetStudentAttendanceDetai
 import com.project.group.rupp.dse.classtracking.models.GetStudentScore
 import com.project.group.rupp.dse.classtracking.models.GetStudentScoreDetail
 import com.project.group.rupp.dse.classtracking.models.GetStudentScoreList
+import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
@@ -85,6 +86,12 @@ public interface ApiService {
     fun getMember(
         @Query("classroom_id") classroom_id: String
     ): Call<Response<List<GetMember>>>
+
+    @GET("teacher/attendance")
+    fun getTeacherAttendance(
+        @Query("classroom_id") classroom_id: String,
+        @Query("date") date: String
+    ): Call<Response<List<GetTeacherAttendance>>>
 
 
 

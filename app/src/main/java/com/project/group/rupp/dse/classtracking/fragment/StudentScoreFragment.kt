@@ -121,9 +121,9 @@ class StudentScoreFragment: Fragment(){
 
                 }
                 UiStateStatus.success -> {
-                    adapter.setData(it.data!!)
+                    adapter.setData(it.data?.data!!)
                     adapter.setListener{ index: RecyclerView.ViewHolder? ->
-                        val student = it.data[index!!.adapterPosition]
+                        val student = it.data.data[index!!.adapterPosition]
                         // start new activity
                         val intent = Intent(requireContext(), StudentScoreDetail::class.java)
                         intent.putExtra("member_name", student.member_name)

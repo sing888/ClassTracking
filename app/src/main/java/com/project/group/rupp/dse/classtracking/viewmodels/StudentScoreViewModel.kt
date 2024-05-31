@@ -16,10 +16,10 @@ import retrofit2.Call
 class StudentScoreViewModel: ViewModel() {
     private var _memberIdModelUiState = MutableLiveData<UiState<Response<GetMemberID>>>()
     private var _studentScoreModelUiState = MutableLiveData<UiState<Response<GetStudentScore>>>()
-    private var _studentScoreListUiState = MutableLiveData<UiState<List<GetStudentScoreList>>>()
+    private var _studentScoreListUiState = MutableLiveData<UiState<Response<List<GetStudentScoreList>>>>()
     val memberIdModelUiState: LiveData<UiState<Response<GetMemberID>>> get() = _memberIdModelUiState
     val studentScoreModelUiState: LiveData<UiState<Response<GetStudentScore>>> get() = _studentScoreModelUiState
-    val studentScoreListUiState: LiveData<UiState<List<GetStudentScoreList>>> get() = _studentScoreListUiState
+    val studentScoreListUiState: LiveData<UiState<Response<List<GetStudentScoreList>>>> get() = _studentScoreListUiState
 
     fun getMemberId(context: Context, classId: String) {
         _memberIdModelUiState.value = UiState(UiStateStatus.loading)
@@ -78,7 +78,7 @@ class StudentScoreViewModel: ViewModel() {
             .enqueue(object : retrofit2.Callback<Response<List<GetStudentScoreList>>> {
                 override fun onResponse(call: Call<Response<List<GetStudentScoreList>>>, response: retrofit2.Response<Response<List<GetStudentScoreList>>>) {
                     if (response.isSuccessful) {
-                        _studentScoreListUiState.value = UiState(UiStateStatus.success, data = response.body()?.data)
+                        _studentScoreListUiState.value = UiState(UiStateStatus.success, data = response.body())
                     } else {
                         _studentScoreListUiState.value = UiState(UiStateStatus.error, message = "Error: ${response.message()}")
                     }
