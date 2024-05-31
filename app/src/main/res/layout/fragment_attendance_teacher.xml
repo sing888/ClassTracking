@@ -1,56 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:text="Mobile Development"
-            android:textSize="18sp" />
-    </LinearLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="380dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/linearLayout5"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        app:cardCornerRadius="12dp">
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/secondary"
+            android:background="@color/md_theme_background"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/deadline" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,92 +23,76 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_news_datetime"
-                    android:layout_width="300dp"
+                    android:id="@+id/input_attendance_datetime"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:hint="@string/datetime"
+                    android:hint="@string/select_date"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    app:endIconMode="custom"
+                    app:endIconDrawable="@drawable/ic_calender"
                     android:orientation="horizontal">
 
+
                     <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="300dp"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/attendance_datetime"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:focusable="false"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/ic_calender" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="10dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/edit_student_attendance"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
-                    android:backgroundTint="@color/white"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:text="@string/edit_students"
-                    android:textColor="@color/primary"
-                    android:textSize="12sp"
-                    app:cornerRadius="8dp"
-                    app:strokeColor="@color/primary"
-                    app:strokeWidth="1dp" />
+                    android:layout_gravity="start"
+                    android:textSize="14sp"
+                    style="?attr/materialButtonOutlinedStyle"
+                    app:cornerRadius="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/see_attendance_detail"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="100dp"
-                    android:backgroundTint="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:text="@string/see_details"
-                    android:textColor="@color/primary"
-                    android:textSize="12sp"
-                    app:cornerRadius="8dp"
-                    app:strokeColor="@color/primary"
-                    app:strokeWidth="1dp" />
+                    style="?attr/materialButtonOutlinedStyle"
+                    app:cornerRadius="12dp"
+                    android:textSize="14sp"/>
+
             </LinearLayout>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="380dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/cardView4"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="4dp"
-        app:cardCornerRadius="16dp">
-        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="12dp"
+        android:backgroundTint="@color/md_theme_inverseOnSurface">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/attendance_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/secondary">
+            android:padding="15dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view_room"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1" />
-
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+</LinearLayout>

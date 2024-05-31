@@ -44,7 +44,8 @@
     <string name="see_details">See Details</string>
     <string name="student_name">Student Name</string>
     <string name="subject">Subject</string>
-    <string name="add_subject">Add Subject</string>
+    <string name="subject_name">Subject Name</string>
+    <string name="add_subject">+ Add Subject</string>
     <string name="calculate">Calculate</string>
     <string name="all">All</string>
     <string name="add_assignment">Add Assignment</string>
@@ -57,4 +58,19 @@
     <string name="room_attendance">Attendance</string>
     <string name="room_score">Score</string>
     <string name="room_more">More</string>
+    <string name="status">Status</string>
+    <string name="room_password">Room Password</string>
+    <string name="room_password_warning">* This room is private. \n   Please enter the password to join this room.</string>
+    <string name="complete">Complete</string>
+    <string name="Home">Home</string>
+    <string name="noAttendance">No attendance check yet.</string>
+    <string name="absent">Absent</string>
+    <string name="time">YYYY/MM/DD</string>
+    <string name="average_score">Average Score</string>
+    <string name="rank">Rank</string>
+    <string name="details">Details</string>
+    <string name="subject_average_score">Subject Average Score</string>
+    <string name="member">Member</string>
+    <string name="select_date">Select Date</string>
+
 </resources>

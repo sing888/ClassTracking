@@ -8,19 +8,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.compose.ui.text.style.TextIndent
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
+import com.project.group.rupp.dse.classtracking.activity.CreateNewRoomActivity
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
 import com.project.group.rupp.dse.classtracking.adapter.RoomAdapter
 import com.project.group.rupp.dse.classtracking.databinding.FragmentRoomBinding
 import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
+import com.project.group.rupp.dse.classtracking.viewmodels.MainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomViewModel
 
 class RoomFragment : Fragment() {
@@ -28,6 +28,9 @@ class RoomFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val roomViewModel: RoomViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
+
+    private var account_id: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,19 +90,20 @@ class RoomFragment : Fragment() {
             }
         })
 
-        var layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewRoom.layoutManager = layoutManager
         binding.recyclerViewRoom.adapter = adapter
 
         adapter.setListener{ index: RecyclerView.ViewHolder? ->
-            var room = data[index!!.adapterPosition]
+            val room = data[index!!.adapterPosition]
             // give text to next screen with setextra
-            var intent: Intent = Intent(requireContext(), RoomActivity::class.java)
+            val intent: Intent = Intent(requireContext(), RoomActivity::class.java)
             intent.putExtra("room_id", room.classroom_id)
             intent.putExtra("room_name", room.name)
             intent.putExtra("room_description", room.room_code)
             intent.putExtra("room_password", room.password)
             intent.putExtra("room_type", roomtype)
+            intent.putExtra("account_id", account_id)
             startActivity(intent)
         }
 
@@ -122,12 +126,20 @@ class RoomFragment : Fragment() {
         }
 
         binding.btnCreateNewRoom.setOnClickListener {
-            Snackbar.make(view, "Create new room", Snackbar.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            intent.putExtra("header", "Create New Room")
+            startActivity(intent)
         }
 
         binding.btnJoinNewRoom.setOnClickListener {
-            Snackbar.make(view, "Join new room", Snackbar.LENGTH_SHORT).show()
+            val intent = Intent(requireContext(), CreateNewRoomActivity::class.java)
+            intent.putExtra("header", "Join New Room")
+            startActivity(intent)
         }
+
+        mainViewModel.account_id.observe(viewLifecycleOwner, Observer {
+            account_id = it
+        })
 
     }
 

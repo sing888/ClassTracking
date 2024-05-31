@@ -7,13 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.project.group.rupp.dse.classtracking.databinding.ActivitySplashBinding
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
+import com.project.group.rupp.dse.classtracking.viewmodels.ProfileViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.SplashViewModel
 
 class SplashActivity: AppCompatActivity() {
     private var _binding: ActivitySplashBinding? = null
     private val binding get() = _binding!!
 
-    private val splashViewModel: SplashViewModel by viewModels()
+    private val splashViewModel: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,18 +25,18 @@ class SplashActivity: AppCompatActivity() {
         val token = PreferenceUtils.getToken(this)
 
         if (token != null){
-            splashViewModel.checkToken(this)
-            splashViewModel.splashModelUiState.observe(this, Observer { uiState ->
+            splashViewModel.getProfile(this)
+            splashViewModel.profileModelUiState.observe(this, Observer { uiState ->
                 when (uiState.status) {
                     UiStateStatus.loading -> {
 
                     }
                     UiStateStatus.success -> {
-                        var isTokenValid = uiState.data
-                        if (isTokenValid == true){
-                            startActivity(Intent(this, MainActivity::class.java))
-                        }else{
-                            startActivity(Intent(this, SigninActivity::class.java))
+                        val account_id = uiState.data?.data?.account_id
+                        if (account_id != null) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra("account_id", account_id)
+                            startActivity(intent)
                         }
                     }
                     UiStateStatus.error -> {

@@ -39,7 +39,7 @@ class AchieveFragment: Fragment() {
         _binding = FragmentAchieveBinding.bind(view)
 
         var data = listOf<GetAchieve>()
-        var adapter: AchieveAdapter = AchieveAdapter()
+        val adapter= AchieveAdapter()
 
         achieveViewModel.achieveModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
             when (uiState.status) {
@@ -74,20 +74,22 @@ class AchieveFragment: Fragment() {
         achieveViewModel.getRoom(this.requireContext())
 
         // layout manager
-        var layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.VERTICAL, false)
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.VERTICAL, false)
 
         // recycler view
         binding.recyclerViewAchieve.layoutManager = layoutManager
         binding.recyclerViewAchieve.adapter = adapter
 
         adapter.setListener { index: RecyclerView.ViewHolder? ->
-            var room = data[index!!.adapterPosition]
+            val room = data[index!!.adapterPosition]
 //            Toast.makeText(requireContext(), "Room_id: ${room.classroom_id}", Toast.LENGTH_SHORT).show()
-            var intent: Intent = Intent(this.requireContext(), RoomActivity::class.java)
-            intent.putExtra("room_type", "achieve")
+            val intent: Intent = Intent(this.requireContext(), RoomActivity::class.java)
             intent.putExtra("room_id", room.classroom_id)
             intent.putExtra("room_name", room.name)
             intent.putExtra("room_code", room.room_code)
+            intent.putExtra("room_password", "")
+            intent.putExtra("account_id", "")
+            intent.putExtra("room_type", "student")
 
             startActivity(intent)
 

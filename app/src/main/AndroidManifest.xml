@@ -48,7 +48,12 @@
             android:exported="true"/>
         <activity android:name=".activity.RoomActivity"
             android:exported="true"/>
-
+        <activity android:name=".activity.CreateNewRoomActivity"
+            android:exported="true"/>
+        <activity android:name=".activity.StudentScoreDetail"
+            android:exported="true"/>
+        <activity android:name=".activity.MemberActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

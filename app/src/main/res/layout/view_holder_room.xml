@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -70,27 +70,6 @@
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/room_more_menu"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/md_theme_inverseOnSurface"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="50dp"
-        android:visibility="gone">
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/room_more_menu_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/md_theme_inverseOnSurface"
-            app:menu="@menu/room_more" />
-
-    </com.google.android.material.card.MaterialCardView>
-
-
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
