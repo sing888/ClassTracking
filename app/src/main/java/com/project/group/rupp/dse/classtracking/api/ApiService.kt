@@ -1,7 +1,9 @@
 package com.project.group.rupp.dse.classtracking.api
 
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
+import com.project.group.rupp.dse.classtracking.models.GetTeacherNews
 import com.project.group.rupp.dse.classtracking.models.GetRoom
+import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
 import retrofit2.http.GET
@@ -35,6 +37,11 @@ public interface ApiService {
     @GET("student/classroom")
     fun getStudentRoom(): Call<Response<List<GetRoom>>>
 
+    @GET("teacher/news")
+    fun getTeacherNews(): Call<Response<List<GetTeacherNews>>>
+
+    @GET("student/news")
+    fun getStudentNews(): Call<Response<List<GetStudentNews>>>
 
 
 }
