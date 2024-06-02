@@ -2,10 +2,13 @@ package com.project.group.rupp.dse.classtracking.api
 
 import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
+import com.project.group.rupp.dse.classtracking.models.GetAddMember
+import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.GetMember
 import com.project.group.rupp.dse.classtracking.models.GetMemberID
+import com.project.group.rupp.dse.classtracking.models.GetPostTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.models.GetStudentAttendance
 import com.project.group.rupp.dse.classtracking.models.GetStudentAttendanceDetail
@@ -14,14 +17,17 @@ import com.project.group.rupp.dse.classtracking.models.GetStudentScoreDetail
 import com.project.group.rupp.dse.classtracking.models.GetStudentScoreList
 import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
+import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
+import com.project.group.rupp.dse.classtracking.models.PostTeacherAttendance
 import retrofit2.http.GET
 import retrofit2.Call
 import com.project.group.rupp.dse.classtracking.models.Profile
 import com.project.group.rupp.dse.classtracking.models.Response
 import com.project.group.rupp.dse.classtracking.models.SignInData
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -53,6 +59,12 @@ public interface ApiService {
 
     @POST("classroom/join")
     fun joinRoom(@Body postJoinRoom: PostJoinNewRoom): Call<Response<GetJoinNewRoom>>
+
+    @POST("teacher/attendance")
+    fun postTeacherAttendance(@Body postTeacherAttendance: PostTeacherAttendance): Call<Response<GetPostTeacherAttendance>>
+
+    @POST("teacher/member")
+    fun addMember(@Body postAddMember: PostMember): Call<Response<GetAddMember>>
 
     @GET("student/attendance/percentage")
     fun getStudentAttendance(@Query("classroom_id") classroom_id: String): Call<Response<GetStudentAttendance>>
@@ -93,9 +105,15 @@ public interface ApiService {
         @Query("date") date: String
     ): Call<Response<List<GetTeacherAttendance>>>
 
+    @GET("teacher/attendance/percentage")
+    fun getTeacherAttendanceDetail(
+        @Query("classroom_id") classroom_id: String
+    ): Call<Response<List<GetAttendanceDetailAll>>>
 
-
-
+    @DELETE("teacher/member")
+    fun deleteMember(
+        @Query("member_id") member_id: String
+    ): Call<Response<String>>
 
 
 }

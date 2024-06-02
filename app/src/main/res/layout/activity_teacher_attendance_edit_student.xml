@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_gravity="center"
+            android:id="@+id/room_back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginStart="10dp"
+            android:text=""
+            android:id="@+id/room_name"/>
+    </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -23,22 +46,18 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/input_attendance_datetime"
+                    android:id="@+id/input_student_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/select_date"
+                    android:hint="@string/student_name"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
-                    app:endIconMode="custom"
-                    app:endIconDrawable="@drawable/ic_calender"
                     android:orientation="horizontal">
 
-
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/attendance_datetime"
+                        android:id="@+id/student_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:focusable="false"
                         android:inputType="text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,28 +69,17 @@
                 android:paddingVertical="10dp"
                 android:orientation="horizontal">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/attendance_teacher_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="@string/edit_students"
-                    android:layout_gravity="start"
-                    android:textSize="14sp"
-                    style="?attr/materialButtonOutlinedStyle"
-                    app:cornerRadius="12dp" />
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/attendance_teacher_see_detail"
+                    android:id="@+id/btn_add_student"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
-                    android:text="@string/see_details"
+                    android:text="@string/add_student"
                     style="?attr/materialButtonOutlinedStyle"
                     app:cornerRadius="12dp"
                     android:textSize="14sp"/>
@@ -89,23 +97,11 @@
         app:cardCornerRadius="12dp"
         android:backgroundTint="@color/md_theme_inverseOnSurface">
 
-        <TextView
-            android:id="@+id/no_attendance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/no_attendance"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/md_theme_onSurface"
-            android:layout_margin="20dp"
-            android:visibility="gone"/>
-
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/attendance_list"
+            android:id="@+id/rv_student_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp" />
+            android:padding="10dp" />
 
     </androidx.cardview.widget.CardView>
 
