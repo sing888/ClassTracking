@@ -2,6 +2,7 @@ package com.project.group.rupp.dse.classtracking.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -14,7 +15,7 @@ class SplashActivity: AppCompatActivity() {
     private var _binding: ActivitySplashBinding? = null
     private val binding get() = _binding!!
 
-    private val splashViewModel: ProfileViewModel by viewModels()
+    private val splashViewModel: SplashViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,21 +26,18 @@ class SplashActivity: AppCompatActivity() {
         val token = PreferenceUtils.getToken(this)
 
         if (token != null){
-            splashViewModel.getProfile(this)
-            splashViewModel.profileModelUiState.observe(this, Observer { uiState ->
+            splashViewModel.checkToken(this)
+            splashViewModel.splashModelUiState.observe(this, Observer { uiState ->
                 when (uiState.status) {
                     UiStateStatus.loading -> {
-
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                     UiStateStatus.success -> {
-                        val account_id = uiState.data?.data?.account_id
-                        if (account_id != null) {
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("account_id", account_id)
-                            startActivity(intent)
-                        }
+                        binding.progressBar.visibility = View.GONE
+                        startActivity(Intent(this, MainActivity::class.java))
                     }
                     UiStateStatus.error -> {
+                        binding.progressBar.visibility = View.GONE
                         startActivity(Intent(this, SigninActivity::class.java))
                     }
                 }
