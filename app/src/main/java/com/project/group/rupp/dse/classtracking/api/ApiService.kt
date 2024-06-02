@@ -4,6 +4,7 @@ import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetAddMember
 import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
+import com.project.group.rupp.dse.classtracking.models.GetTeacherNews
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.GetMember
@@ -18,6 +19,7 @@ import com.project.group.rupp.dse.classtracking.models.GetStudentScoreList
 import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostMember
+import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
 import com.project.group.rupp.dse.classtracking.models.PostTeacherAttendance
@@ -53,6 +55,12 @@ public interface ApiService {
 
     @GET("student/classroom")
     fun getStudentRoom(): Call<Response<List<GetRoom>>>
+
+    @GET("teacher/news")
+    fun getTeacherNews(): Call<Response<List<GetTeacherNews>>>
+
+    @GET("student/news")
+    fun getStudentNews(): Call<Response<List<GetStudentNews>>>
 
     @POST("classroom/create")
     fun createRoom(@Body postCreateRoom: PostCreateRoom): Call<Response<GetCreateRoom>>
@@ -114,6 +122,4 @@ public interface ApiService {
     fun deleteMember(
         @Query("member_id") member_id: String
     ): Call<Response<String>>
-
-
 }
