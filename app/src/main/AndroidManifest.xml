@@ -60,6 +60,8 @@
             android:exported="true"/>
         <activity android:name=".activity.TeacherAttendanceEditStudent"
             android:exported="true"/>
+        <activity android:name=".activity.ExamActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

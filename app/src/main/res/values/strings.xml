@@ -76,5 +76,9 @@
     <string name="dot">-</string>
     <string name="no_attendance">No attendance found.</string>
     <string name="add_student">+ Add Student</string>
+    <string name="add_exam">+ Add Exam</string>
+    <string name="quiz_name">Quiz Name</string>
+    <string name="cancel">Cancel</string>
+
 
 </resources>
