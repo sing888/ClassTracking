@@ -24,6 +24,7 @@ import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
 import com.project.group.rupp.dse.classtracking.models.PostAddSubject
+import com.project.group.rupp.dse.classtracking.models.PostNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
 import com.project.group.rupp.dse.classtracking.models.PostTeacherAttendance
@@ -61,7 +62,10 @@ public interface ApiService {
     fun getStudentRoom(): Call<Response<List<GetRoom>>>
 
     @GET("teacher/news")
-    fun getTeacherNews(): Call<Response<List<GetTeacherNews>>>
+    fun getTeacherNews(date: String): Call<Response<List<GetTeacherNews>>>
+
+    @POST("teacher/news")
+    fun postNews(@Body postNews: PostNews): Call<Response<GetTeacherNews>>
 
     @GET("student/news")
     fun getStudentNews(): Call<Response<List<GetStudentNews>>>
