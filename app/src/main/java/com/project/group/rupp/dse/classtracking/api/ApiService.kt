@@ -3,9 +3,11 @@ package com.project.group.rupp.dse.classtracking.api
 import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetAddMember
+import com.project.group.rupp.dse.classtracking.models.GetAddSubject
 import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
 import com.project.group.rupp.dse.classtracking.models.GetTeacherNews
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
+import com.project.group.rupp.dse.classtracking.models.GetExam
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.GetMember
 import com.project.group.rupp.dse.classtracking.models.GetMemberID
@@ -20,6 +22,8 @@ import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.GetStudentNews
+import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
+import com.project.group.rupp.dse.classtracking.models.PostAddSubject
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
 import com.project.group.rupp.dse.classtracking.models.PostTeacherAttendance
@@ -122,4 +126,19 @@ public interface ApiService {
     fun deleteMember(
         @Query("member_id") member_id: String
     ): Call<Response<String>>
+
+    @GET("teacher/subject")
+    fun getTeacherSubject(
+        @Query("classroom_id") classroom_id: String
+    ): Call<Response<List<GetTeacherSubject>>>
+
+    @POST("teacher/subject")
+    fun addSubject(
+        @Body postAddSubject: PostAddSubject
+    ): Call<Response<GetAddSubject>>
+
+    @GET("teacher/exam")
+    fun getExam(
+        @Query("subject_id") subject_id: String
+    ): Call<Response<List<GetExam>>>
 }

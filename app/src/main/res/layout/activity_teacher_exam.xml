@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back"
+                android:layout_gravity="center"
+                android:id="@+id/room_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:id="@+id/room_name"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,9 +42,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:text="@string/subject"
+                android:text="@string/all"
                 android:textSize="25sp"
                 android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="wrap_content"
@@ -33,10 +60,9 @@
                 app:cornerRadius="12dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_add_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_subject"
+                android:text="@string/add_exam"
                 android:layout_marginHorizontal="5dp"
                 android:textSize="12sp"
                 app:cornerRadius="12dp" />
@@ -50,10 +76,11 @@
             android:layout_weight="1"
             android:layout_margin="10dp"
             android:padding="10dp"/>
+
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fl_add_subject"
+        android:id="@+id/fl_add_exam"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/blur_background"
@@ -68,7 +95,7 @@
             android:layout_marginTop="170dp">
 
             <LinearLayout
-                android:paddingVertical="10dp"
+                android:paddingVertical="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/md_theme_inverseOnSurface"
@@ -78,54 +105,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25dp"
-                    android:hint="@string/subject_name">
+                    android:hint="@string/quiz_name">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_subject_name"
+                        android:id="@+id/ip_quiz_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text" />
 
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="25dp"
+                    android:hint="@string/score">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/ip_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_marginVertical="10dp"
-                    android:padding="5dp"
-                    android:layout_width="match_parent"
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_cancel_subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:text="@string/cancel"
-                        android:textSize="14sp"
-                        style="?attr/materialButtonOutlinedStyle"
-                        app:cornerRadius="12dp" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btn_save_subject"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="20dp"
-                        android:text="@string/save"
-                        android:textSize="14sp"
-                        style="?attr/materialButtonOutlinedStyle"
-                        app:cornerRadius="12dp" />
-                </LinearLayout>
-
-
+                    android:layout_gravity="end"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:text="@string/save"
+                    android:textSize="14sp"
+                    style="?attr/materialButtonOutlinedStyle"
+                    app:cornerRadius="12dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </FrameLayout>
+
 
 </RelativeLayout>
