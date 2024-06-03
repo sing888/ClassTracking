@@ -54,6 +54,8 @@
             android:exported="true"/>
         <activity android:name=".activity.MemberActivity"
             android:exported="true"/>
+        <activity android:name=".activity.CreateNewsActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
