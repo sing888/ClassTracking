@@ -35,6 +35,7 @@ class RoomActivity: AppCompatActivity() {
 
         roomViewModel.setRoomId(roomid!!)
         roomViewModel.setAccountId(account_id!!)
+        roomViewModel.setRoomName(roomname!!)
         
         val fragmentContainer = binding.llFragmentContainer
         val fragmentManager = supportFragmentManager.beginTransaction()

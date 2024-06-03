@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentContainer = binding.fragmentMainContainer
-        val intent: Intent = intent
-        val account_id = intent.getStringExtra("account_id")
-        mainViewModel.setAccountId(account_id!!)
 
         val fragmentManager = supportFragmentManager.beginTransaction()
         fragmentManager.replace(fragmentContainer.id, RoomFragment())

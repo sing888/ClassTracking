@@ -56,6 +56,10 @@
             android:exported="true"/>
         <activity android:name=".activity.CreateNewsActivity"
             android:exported="true"/>
+        <activity android:name=".activity.TeacherAttendanceDetailActivity"
+            android:exported="true"/>
+        <activity android:name=".activity.TeacherAttendanceEditStudent"
+            android:exported="true"/>
     </application>
 
 </manifest>
