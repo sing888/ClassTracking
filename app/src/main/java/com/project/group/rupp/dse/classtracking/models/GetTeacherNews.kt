@@ -1,11 +1,11 @@
 package com.project.group.rupp.dse.classtracking.models
 
-import java.util.Date
+import android.widget.DatePicker
 
 data class GetTeacherNews (
     val news_id: String,
-    val deadline: Date,
+    val deadline: String,
     val title: String,
     val body: String,
-    val post_date: Date
+    val post_date: String
 )

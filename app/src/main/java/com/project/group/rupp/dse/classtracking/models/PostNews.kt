@@ -1,11 +1,8 @@
 package com.project.group.rupp.dse.classtracking.models
 
-import java.util.Date
-
-data class GetStudentNews (
-    val news_id: String,
-    val deadline: String,
+data class PostNews(
     val title: String,
+    val deadline: String,
     val body: String,
     val post_date: String
 )

@@ -4,18 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.databinding.ActivityRoomBinding
 import com.project.group.rupp.dse.classtracking.fragment.MoreRoomFragment
-import com.project.group.rupp.dse.classtracking.fragment.NewsFragment
+import com.project.group.rupp.dse.classtracking.fragment.TeacherNewsFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentAttendanceFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentScoreFragment
 import com.project.group.rupp.dse.classtracking.fragment.TeacherAttendanceFragment
 import com.project.group.rupp.dse.classtracking.fragment.TeacherScoreFragment
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
-import com.project.group.rupp.dse.classtracking.viewmodels.RoomViewModel
-import com.project.group.rupp.dse.classtracking.viewmodels.StudentAttendanceViewModel
 
 class RoomActivity: AppCompatActivity() {
     private var _binding: ActivityRoomBinding? = null
@@ -42,7 +39,7 @@ class RoomActivity: AppCompatActivity() {
         
         val fragmentContainer = binding.llFragmentContainer
         val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.add(fragmentContainer.id, NewsFragment())
+        fragmentManager.add(fragmentContainer.id, TeacherNewsFragment())
         fragmentManager.commit()
 
 
@@ -55,7 +52,7 @@ class RoomActivity: AppCompatActivity() {
             when (item.itemId) {
                 R.id.room_news -> {
                     val fragmentManager = supportFragmentManager.beginTransaction()
-                    fragmentManager.replace(fragmentContainer.id, NewsFragment())
+                    fragmentManager.replace(fragmentContainer.id, TeacherNewsFragment())
                     fragmentManager.commit()
                     true
                 }
