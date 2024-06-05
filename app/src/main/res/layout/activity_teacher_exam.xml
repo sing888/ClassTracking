@@ -60,6 +60,7 @@
                 app:cornerRadius="12dp" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_add_exam"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/add_exam"
@@ -68,6 +69,17 @@
                 app:cornerRadius="12dp" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_exam"
+            android:textSize="20sp"
+            android:layout_margin="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:id="@+id/no_exam"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_room"
@@ -130,16 +142,38 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_marginVertical="0dp"
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginHorizontal="20dp"
-                    android:text="@string/save"
-                    android:textSize="14sp"
-                    style="?attr/materialButtonOutlinedStyle"
-                    app:cornerRadius="12dp" />
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_cancel_exam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/cancel"
+                        android:textSize="14sp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        app:cornerRadius="12dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_save_exam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:text="@string/save"
+                        android:textSize="14sp"
+                        style="?attr/materialButtonOutlinedStyle"
+                        app:cornerRadius="12dp" />
+                </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

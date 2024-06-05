@@ -2,6 +2,7 @@ package com.project.group.rupp.dse.classtracking.api
 
 import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
+import com.project.group.rupp.dse.classtracking.models.GetAddExam
 import com.project.group.rupp.dse.classtracking.models.GetAddMember
 import com.project.group.rupp.dse.classtracking.models.GetAddSubject
 import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
@@ -23,6 +24,7 @@ import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
+import com.project.group.rupp.dse.classtracking.models.PostAddExam
 import com.project.group.rupp.dse.classtracking.models.PostAddSubject
 import com.project.group.rupp.dse.classtracking.models.PostNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
@@ -39,15 +41,39 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 public interface ApiService {
-    @GET("auth/sign_in/token")
-    fun checkToken(): Call<Boolean>
-
-    // Add a new POST request to the API
     @POST("auth/sign_in")
     fun signIn(@Body signIn: PostSignIn): Call<Response<SignInData>>
 
     @POST("auth/sign_up")
     fun signUp(@Body signUp: PostSignUp): Call<Boolean>
+
+    @POST("teacher/news")
+    fun postNews(@Body postNews: PostNews): Call<Response<GetTeacherNews>>
+
+    @POST("classroom/create")
+    fun createRoom(@Body postCreateRoom: PostCreateRoom): Call<Response<GetCreateRoom>>
+
+    @POST("classroom/join")
+    fun joinRoom(@Body postJoinRoom: PostJoinNewRoom): Call<Response<GetJoinNewRoom>>
+
+    @POST("teacher/attendance")
+    fun postTeacherAttendance(@Body postTeacherAttendance: PostTeacherAttendance): Call<Response<GetPostTeacherAttendance>>
+
+    @POST("teacher/member")
+    fun addMember(@Body postAddMember: PostMember): Call<Response<GetAddMember>>
+
+    @POST("teacher/subject")
+    fun addSubject(
+        @Body postAddSubject: PostAddSubject
+    ): Call<Response<GetAddSubject>>
+
+    @POST("teacher/exam")
+    fun addExam(
+        @Body postAddExam: PostAddExam
+    ): Call<Response<GetAddExam>>
+
+    @GET("auth/sign_in/token")
+    fun checkToken(): Call<Boolean>
 
     @GET("account/info")
     fun getProfile(): Call<Response<Profile>>
@@ -64,23 +90,8 @@ public interface ApiService {
     @GET("teacher/news")
     fun getTeacherNews(date: String): Call<Response<List<GetTeacherNews>>>
 
-    @POST("teacher/news")
-    fun postNews(@Body postNews: PostNews): Call<Response<GetTeacherNews>>
-
     @GET("student/news")
     fun getStudentNews(): Call<Response<List<GetStudentNews>>>
-
-    @POST("classroom/create")
-    fun createRoom(@Body postCreateRoom: PostCreateRoom): Call<Response<GetCreateRoom>>
-
-    @POST("classroom/join")
-    fun joinRoom(@Body postJoinRoom: PostJoinNewRoom): Call<Response<GetJoinNewRoom>>
-
-    @POST("teacher/attendance")
-    fun postTeacherAttendance(@Body postTeacherAttendance: PostTeacherAttendance): Call<Response<GetPostTeacherAttendance>>
-
-    @POST("teacher/member")
-    fun addMember(@Body postAddMember: PostMember): Call<Response<GetAddMember>>
 
     @GET("student/attendance/percentage")
     fun getStudentAttendance(@Query("classroom_id") classroom_id: String): Call<Response<GetStudentAttendance>>
@@ -126,23 +137,29 @@ public interface ApiService {
         @Query("classroom_id") classroom_id: String
     ): Call<Response<List<GetAttendanceDetailAll>>>
 
-    @DELETE("teacher/member")
-    fun deleteMember(
-        @Query("member_id") member_id: String
-    ): Call<Response<String>>
-
     @GET("teacher/subject")
     fun getTeacherSubject(
         @Query("classroom_id") classroom_id: String
     ): Call<Response<List<GetTeacherSubject>>>
 
-    @POST("teacher/subject")
-    fun addSubject(
-        @Body postAddSubject: PostAddSubject
-    ): Call<Response<GetAddSubject>>
-
     @GET("teacher/exam")
     fun getExam(
         @Query("subject_id") subject_id: String
     ): Call<Response<List<GetExam>>>
+
+    @DELETE("teacher/member")
+    fun deleteMember(
+        @Query("member_id") member_id: String
+    ): Call<Response<String>>
+
+    @DELETE("teacher/subject")
+    fun deleteSubject(
+        @Query("subject_id") subject_id: String
+    ): Call<Response<String>>
+
+    @DELETE("teacher/exam")
+    fun deleteExam(
+        @Query("exam_id") exam_id: String
+    ): Call<Response<String>>
+
 }

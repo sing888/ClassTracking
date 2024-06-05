@@ -79,6 +79,8 @@
     <string name="add_exam">+ Add Exam</string>
     <string name="quiz_name">Quiz Name</string>
     <string name="cancel">Cancel</string>
+    <string name="no_exam">No exam found.</string>
+    <string name="no_subject">No subject found.</string>
 
 
 </resources>

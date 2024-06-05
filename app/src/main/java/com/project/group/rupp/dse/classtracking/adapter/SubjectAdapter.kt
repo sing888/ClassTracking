@@ -6,10 +6,16 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.RecyclerListener
 import com.project.group.rupp.dse.classtracking.databinding.ViewHolderScoreTeacherBinding
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
+import com.project.group.rupp.dse.classtracking.viewmodels.TeacherScoreViewModel
 
 class SubjectAdapter: RecyclerView.Adapter<SubjectViewHolder>() {
     private var dataset: List<GetTeacherSubject> = listOf()
     private var listener: RecyclerListener? = null
+    private var subjectViewHolder : TeacherScoreViewModel ?= null
+
+    fun setViewModel(viewModel: TeacherScoreViewModel){
+        subjectViewHolder = viewModel
+    }
 
     fun setDataset(data: List<GetTeacherSubject>){
         dataset = data
@@ -30,7 +36,7 @@ class SubjectAdapter: RecyclerView.Adapter<SubjectViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: SubjectViewHolder, position: Int) {
-        holder.bind(dataset[position])
+        holder.bind(dataset[position], subjectViewHolder!!)
 
         holder.itemView.setOnClickListener{
             listener?.onViewRecycled(holder)

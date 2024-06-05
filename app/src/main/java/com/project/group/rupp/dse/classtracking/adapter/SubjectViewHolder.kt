@@ -10,16 +10,17 @@ import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.databinding.ViewHolderScoreTeacherBinding
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
+import com.project.group.rupp.dse.classtracking.viewmodels.TeacherScoreViewModel
 
 class SubjectViewHolder(private val binding: ViewHolderScoreTeacherBinding): RecyclerView.ViewHolder(binding.root){
-    fun bind(subject: GetTeacherSubject){
+    fun bind(subject: GetTeacherSubject, subjectViewHolder: TeacherScoreViewModel){
         binding.subName.text = subject.name
         binding.subMore.setOnClickListener {
-            showMenu(it.context, it, R.menu.room_more)
+            showMenu(it.context, it, R.menu.room_more, subjectViewHolder, subject.subject_id)
         }
     }
 
-    private fun showMenu(context: Context, v: View, @MenuRes menuRes: Int) {
+    private fun showMenu(context: Context, v: View, @MenuRes menuRes: Int, subjectViewHolder: TeacherScoreViewModel, subjectId: String? = null) {
         val popup = PopupMenu(context, v)
         popup.menuInflater.inflate(menuRes, popup.menu)
 
@@ -31,7 +32,7 @@ class SubjectViewHolder(private val binding: ViewHolderScoreTeacherBinding): Rec
                 }
 
                 R.id.menu_delete -> {
-                    Snackbar.make(v, "Delete room", Snackbar.LENGTH_SHORT).show()
+                    subjectViewHolder.deleteSubject(context, subjectId!!)
                     true
                 }
 

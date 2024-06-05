@@ -16,8 +16,10 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 class TeacherScoreViewModel: ViewModel(){
     private var _subjectUiState = MutableLiveData<UiState<Response<List<GetTeacherSubject>>>>()
     private var _addSubjectUiState = MutableLiveData<UiState<Response<GetAddSubject>>>()
+    private var _deleteSubjectUiState = MutableLiveData<UiState<Response<String>>>()
     val subjectUiState: LiveData<UiState<Response<List<GetTeacherSubject>>>> get() = _subjectUiState
     val addSubjectUiState: LiveData<UiState<Response<GetAddSubject>>> get() = _addSubjectUiState
+    val deleteSubjectUiState: LiveData<UiState<Response<String>>> get() = _deleteSubjectUiState
 
     fun getTeacherSubject(context: Context, classID: String){
         _subjectUiState.value = UiState(UiStateStatus.loading)
@@ -71,6 +73,33 @@ class TeacherScoreViewModel: ViewModel(){
                     t: Throwable
                 ) {
                     _addSubjectUiState.value = UiState(UiStateStatus.error, message = "Error: ${t.message}")
+                }
+            })
+    }
+
+    fun deleteSubject(context: Context, subjectID: String){
+        _deleteSubjectUiState.value = UiState(UiStateStatus.loading)
+
+        val apiService = RetrofitInstance.create(context)
+
+        apiService.deleteSubject(subjectID)
+            .enqueue(object : retrofit2.Callback<Response<String>>{
+                override fun onResponse(
+                    call: retrofit2.Call<Response<String>>,
+                    response: retrofit2.Response<Response<String>>
+                ) {
+                    if(response.isSuccessful){
+                        _deleteSubjectUiState.value = UiState(UiStateStatus.success, data = response.body())
+                    } else {
+                        _deleteSubjectUiState.value = UiState(UiStateStatus.error, message = "Error: ${response.message()}")
+                    }
+                }
+
+                override fun onFailure(
+                    call: retrofit2.Call<Response<String>>,
+                    t: Throwable
+                ) {
+                    _deleteSubjectUiState.value = UiState(UiStateStatus.error, message = "Error: ${t.message}")
                 }
             })
     }

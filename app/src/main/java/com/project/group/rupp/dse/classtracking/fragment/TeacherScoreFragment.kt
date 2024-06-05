@@ -23,10 +23,10 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.TeacherScoreViewModel
 
-class TeacherScoreFragment: Fragment(){
+class TeacherScoreFragment: Fragment() {
     private var _binding: FragmentScoreTeacherBinding? = null
     private val binding get() = _binding!!
-    private val subjectScoreViewHolder : TeacherScoreViewModel by viewModels()
+    private val subjectScoreViewHolder: TeacherScoreViewModel by viewModels()
     private val roomMainViewModel: RoomMainViewModel by activityViewModels()
 
     private var data = listOf<GetTeacherSubject>()
@@ -47,25 +47,31 @@ class TeacherScoreFragment: Fragment(){
         super.onViewCreated(view, savedInstanceState)
 
         subjectScoreViewHolder.subjectUiState.observe(viewLifecycleOwner, Observer {
-            when(it.status){
+            when (it.status) {
                 UiStateStatus.loading -> {
 
                 }
+
                 UiStateStatus.success -> {
+                    binding.tvNoSubject.visibility = View.GONE
+                    binding.recyclerViewRoom.visibility = View.VISIBLE
                     adapter.setDataset(it.data?.data!!)
                     data = it.data.data
                     binding.recyclerViewRoom.adapter = adapter
                     binding.recyclerViewRoom.layoutManager = linearLayoutManager
                 }
+
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    binding.tvNoSubject.visibility = View.VISIBLE
+                    binding.recyclerViewRoom.visibility = View.GONE
                 }
             }
         })
 
         subjectScoreViewHolder.getTeacherSubject(requireContext(), roomMainViewModel.roomId.value!!)
+        adapter.setViewModel(subjectScoreViewHolder)
 
-        adapter.setListener{ index: RecyclerView.ViewHolder ->
+        adapter.setListener { index: RecyclerView.ViewHolder ->
             val subject = data[index.adapterPosition]
 
             val intent = Intent(context, ExamActivity::class.java)
@@ -84,9 +90,9 @@ class TeacherScoreFragment: Fragment(){
         }
 
         binding.btnSaveSubject.setOnClickListener {
-            if (binding.etSubjectName.text.toString().isEmpty()){
+            if (binding.etSubjectName.text.toString().isEmpty()) {
                 binding.etSubjectName.error = "Please enter subject name"
-            }else {
+            } else {
                 binding.flAddSubject.visibility = View.GONE
                 binding.etSubjectName.clearFocus()
                 binding.root.hideKeyboard()
@@ -96,24 +102,58 @@ class TeacherScoreFragment: Fragment(){
                     roomMainViewModel.roomId.value!!
                 )
                 binding.etSubjectName.text = null
-                subjectScoreViewHolder.getTeacherSubject(requireContext(), roomMainViewModel.roomId.value!!)
+                subjectScoreViewHolder.getTeacherSubject(
+                    requireContext(),
+                    roomMainViewModel.roomId.value!!
+                )
             }
         }
 
         subjectScoreViewHolder.addSubjectUiState.observe(viewLifecycleOwner, Observer {
-            when(it.status){
+            when (it.status) {
                 UiStateStatus.loading -> {
 
                 }
+
                 UiStateStatus.success -> {
                     Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
+                    subjectScoreViewHolder.getTeacherSubject(
+                        requireContext(),
+                        roomMainViewModel.roomId.value!!
+                    )
                 }
+
                 UiStateStatus.error -> {
-                    Snackbar.make(binding.root, "Error", Snackbar.LENGTH_SHORT).show()
+                    subjectScoreViewHolder.getTeacherSubject(
+                        requireContext(),
+                        roomMainViewModel.roomId.value!!
+                    )
                 }
             }
         })
 
+        subjectScoreViewHolder.deleteSubjectUiState.observe(viewLifecycleOwner, Observer {
+            when (it.status) {
+                UiStateStatus.loading -> {
+
+                }
+
+                UiStateStatus.success -> {
+                    Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
+                    subjectScoreViewHolder.getTeacherSubject(
+                        requireContext(),
+                        roomMainViewModel.roomId.value!!
+                    )
+                }
+
+                UiStateStatus.error -> {
+                    subjectScoreViewHolder.getTeacherSubject(
+                        requireContext(),
+                        roomMainViewModel.roomId.value!!
+                    )
+                }
+            }
+        })
     }
 
     private fun View.hideKeyboard() {
