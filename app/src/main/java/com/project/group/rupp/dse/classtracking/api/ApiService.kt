@@ -3,12 +3,14 @@ package com.project.group.rupp.dse.classtracking.api
 import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetAddExam
+import com.project.group.rupp.dse.classtracking.models.GetAddExamScore
 import com.project.group.rupp.dse.classtracking.models.GetAddMember
 import com.project.group.rupp.dse.classtracking.models.GetAddSubject
 import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
 import com.project.group.rupp.dse.classtracking.models.GetTeacherNews
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetExam
+import com.project.group.rupp.dse.classtracking.models.GetExamScoreDetail
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.GetMember
 import com.project.group.rupp.dse.classtracking.models.GetMemberID
@@ -25,6 +27,7 @@ import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
 import com.project.group.rupp.dse.classtracking.models.PostAddExam
+import com.project.group.rupp.dse.classtracking.models.PostAddExamScore
 import com.project.group.rupp.dse.classtracking.models.PostAddSubject
 import com.project.group.rupp.dse.classtracking.models.PostNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
@@ -71,6 +74,11 @@ public interface ApiService {
     fun addExam(
         @Body postAddExam: PostAddExam
     ): Call<Response<GetAddExam>>
+
+    @POST("teacher/exam/score")
+    fun addExamScore(
+        @Body postAddExamScore: PostAddExamScore
+    ): Call<Response<GetAddExamScore>>
 
     @GET("auth/sign_in/token")
     fun checkToken(): Call<Boolean>
@@ -146,6 +154,11 @@ public interface ApiService {
     fun getExam(
         @Query("subject_id") subject_id: String
     ): Call<Response<List<GetExam>>>
+
+    @GET("teacher/exam/score")
+    fun getExamScore(
+        @Query("exam_id") exam_id: String
+    ): Call<Response<List<GetExamScoreDetail>>>
 
     @DELETE("teacher/member")
     fun deleteMember(

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.project.group.rupp.dse.classtracking.RetrofitInstance
 import com.project.group.rupp.dse.classtracking.models.GetAddExam
 import com.project.group.rupp.dse.classtracking.models.GetExam
+import com.project.group.rupp.dse.classtracking.models.GetExamScoreDetail
 import com.project.group.rupp.dse.classtracking.models.PostAddExam
 import com.project.group.rupp.dse.classtracking.models.Response
 import com.project.group.rupp.dse.classtracking.models.UiState
@@ -17,9 +18,11 @@ class ExamViewModel: ViewModel(){
     private var _examUiState = MutableLiveData<UiState<Response<List<GetExam>>>>()
     private var _examAddUiState = MutableLiveData<UiState<Response<GetAddExam>>>()
     private var _examDeleteUiState = MutableLiveData<UiState<Response<String>>>()
+
     val examUiState: LiveData<UiState<Response<List<GetExam>>>> get() = _examUiState
     val examAddUiState: LiveData<UiState<Response<GetAddExam>>> get() = _examAddUiState
     val examDeleteUiState: LiveData<UiState<Response<String>>> get() = _examDeleteUiState
+
 
     fun getExam(context: Context, subjectId: String){
         _examUiState.value = UiState(UiStateStatus.loading)
