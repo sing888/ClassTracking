@@ -9,6 +9,7 @@ import com.project.group.rupp.dse.classtracking.databinding.ActivityRoomBinding
 import com.project.group.rupp.dse.classtracking.fragment.MoreRoomFragment
 import com.project.group.rupp.dse.classtracking.fragment.TeacherNewsFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentAttendanceFragment
+import com.project.group.rupp.dse.classtracking.fragment.StudentNewsFragment
 import com.project.group.rupp.dse.classtracking.fragment.StudentScoreFragment
 import com.project.group.rupp.dse.classtracking.fragment.TeacherAttendanceFragment
 import com.project.group.rupp.dse.classtracking.fragment.TeacherScoreFragment
@@ -39,8 +40,18 @@ class RoomActivity: AppCompatActivity() {
         
         val fragmentContainer = binding.llFragmentContainer
         val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.add(fragmentContainer.id, TeacherNewsFragment())
-        fragmentManager.commit()
+        when (roomtype){
+            "teacher" -> {
+                fragmentManager.add(fragmentContainer.id, TeacherNewsFragment())
+                fragmentManager.commit()
+            }
+            "student" -> {
+                fragmentManager.add(fragmentContainer.id, StudentNewsFragment())
+                fragmentManager.commit()
+            }
+            else ->{}
+        }
+        true
 
 
         binding.roomName.text = roomname
@@ -52,8 +63,17 @@ class RoomActivity: AppCompatActivity() {
             when (item.itemId) {
                 R.id.room_news -> {
                     val fragmentManager = supportFragmentManager.beginTransaction()
-                    fragmentManager.replace(fragmentContainer.id, TeacherNewsFragment())
-                    fragmentManager.commit()
+                    when(roomtype){
+                        "teacher" -> {
+                            fragmentManager.replace(fragmentContainer.id, TeacherNewsFragment())
+                            fragmentManager.commit()
+                        }
+                        "student" -> {
+                            fragmentManager.replace(fragmentContainer.id, StudentNewsFragment())
+                            fragmentManager.commit()
+                        }
+                        else -> {}
+                    }
                     true
                 }
 

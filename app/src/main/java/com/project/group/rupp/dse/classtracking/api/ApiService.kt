@@ -6,7 +6,7 @@ import com.project.group.rupp.dse.classtracking.models.GetAddExam
 import com.project.group.rupp.dse.classtracking.models.GetAddMember
 import com.project.group.rupp.dse.classtracking.models.GetAddSubject
 import com.project.group.rupp.dse.classtracking.models.GetAttendanceDetailAll
-import com.project.group.rupp.dse.classtracking.models.GetTeacherNews
+import com.project.group.rupp.dse.classtracking.models.GetNews
 import com.project.group.rupp.dse.classtracking.models.GetCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetExam
 import com.project.group.rupp.dse.classtracking.models.GetJoinNewRoom
@@ -22,7 +22,6 @@ import com.project.group.rupp.dse.classtracking.models.GetStudentScoreList
 import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostMember
-import com.project.group.rupp.dse.classtracking.models.GetStudentNews
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
 import com.project.group.rupp.dse.classtracking.models.PostAddExam
 import com.project.group.rupp.dse.classtracking.models.PostAddSubject
@@ -48,7 +47,7 @@ public interface ApiService {
     fun signUp(@Body signUp: PostSignUp): Call<Boolean>
 
     @POST("teacher/news")
-    fun postNews(@Body postNews: PostNews): Call<Response<GetTeacherNews>>
+    fun postNews(@Body postNews: PostNews): Call<Response<PostNews>>
 
     @POST("classroom/create")
     fun createRoom(@Body postCreateRoom: PostCreateRoom): Call<Response<GetCreateRoom>>
@@ -88,10 +87,10 @@ public interface ApiService {
     fun getStudentRoom(): Call<Response<List<GetRoom>>>
 
     @GET("teacher/news")
-    fun getTeacherNews(date: String): Call<Response<List<GetTeacherNews>>>
+    fun getTeacherNews(@Query("classroom_id") classroom_id: String): Call<Response<List<GetNews>>>
 
     @GET("student/news")
-    fun getStudentNews(): Call<Response<List<GetStudentNews>>>
+    fun getStudentNews(@Query("classroom_id") classroom_id: String): Call<Response<List<GetNews>>>
 
     @GET("student/attendance/percentage")
     fun getStudentAttendance(@Query("classroom_id") classroom_id: String): Call<Response<GetStudentAttendance>>
