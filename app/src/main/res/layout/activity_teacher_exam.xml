@@ -57,7 +57,8 @@
                 android:text="@string/calculate"
                 android:textSize="14sp"
                 style="?attr/materialButtonOutlinedStyle"
-                app:cornerRadius="12dp" />
+                app:cornerRadius="12dp"
+                android:visibility="gone"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_add_exam"
