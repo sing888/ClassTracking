@@ -79,6 +79,8 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/datetime"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calender"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -86,13 +88,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_calender" />
         </LinearLayout>
 
         <TextView

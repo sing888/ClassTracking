@@ -14,16 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
-import com.project.group.rupp.dse.classtracking.activity.CreateNewsActivity
 import com.project.group.rupp.dse.classtracking.adapter.NewsAdapter
-import com.project.group.rupp.dse.classtracking.databinding.FragmentTeacherNewsBinding
+import com.project.group.rupp.dse.classtracking.databinding.FragmentStudentNewsBinding
 import com.project.group.rupp.dse.classtracking.models.GetNews
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.NewsViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
 
-class TeacherNewsFragment: Fragment() {
-    private var _binding: FragmentTeacherNewsBinding? = null
+class StudentNewsFragment: Fragment() {
+    private var _binding: FragmentStudentNewsBinding? = null
     private val binding get() = _binding!!
 
     private val newsViewModel: NewsViewModel by viewModels()
@@ -37,25 +36,25 @@ class TeacherNewsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_teacher_news, container, false)
+        return inflater.inflate(R.layout.fragment_student_news, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentTeacherNewsBinding.bind(view)
+        _binding = FragmentStudentNewsBinding.bind(view)
 
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.recyclerViewNews.layoutManager = layoutManager
         binding.recyclerViewNews.adapter = adapter
 
-        newsViewModel.getTeacherNews(requireContext(), roomMainViewModel.roomId.value!!)
+        newsViewModel.getStudentNews(requireContext(), roomMainViewModel.roomId.value!!)
 
         var data: List<GetNews>
         newsViewModel.newsModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
             when (uiState.status){
                 UiStateStatus.loading -> {
                     binding.progressLayout.visibility = View.VISIBLE
-                    binding.textViewNews.visibility = View.GONE
+                    binding.textViewStudentNews.visibility = View.GONE
                     Log.d("News", "Loading")
                 }
                 UiStateStatus.success -> {
@@ -63,30 +62,22 @@ class TeacherNewsFragment: Fragment() {
                     data = uiState.data?.data!!
                     Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
                     if (data.isEmpty()){
-                        binding.textViewNews.visibility = View.VISIBLE
-                        binding.textViewNews.text = "No news found"
+                        binding.textViewStudentNews.visibility = View.VISIBLE
+                        binding.textViewStudentNews.text = "No news found"
                         Log.e("News", "No news found")
                     } else {
                         adapter.setDataset(data)
-                        Log.d("TeacherNews", "Have News")
+                        Log.d("StudentNews", "Have News")
                     }
                 }
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
-                    binding.textViewNews.visibility = View.VISIBLE
-                    binding.textViewNews.text = "News not found"
-                    Log.e("TeacherNewsFragment", "Error fetching teacher news: ${uiState.message}")
+                    binding.textViewStudentNews.visibility = View.VISIBLE
+                    binding.textViewStudentNews.text = "News not found"
+                    Log.e("StudentNewsFragment", "Error fetching student news: ${uiState.message}")
                 }
             }
         })
-
-
-        binding.floatingActionButton.setOnClickListener{
-            val intent = Intent(requireContext(), CreateNewsActivity::class.java)
-            intent.putExtra("header", "Create News")
-            intent.putExtra("classroom_id", roomMainViewModel.roomId.value!!)
-            startActivity(intent)
-        }
 
 
     }

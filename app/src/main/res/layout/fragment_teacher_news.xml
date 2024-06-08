@@ -30,7 +30,7 @@
         android:textStyle="bold"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:id="@+id/textView_teacherNews"
+        android:id="@+id/textView_News"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -52,6 +52,5 @@
         android:layout_margin="16dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"/>
-
 
 </RelativeLayout>
