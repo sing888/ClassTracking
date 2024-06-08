@@ -24,12 +24,15 @@
                 android:layout_margin="10dp"
                 app:cardCornerRadius="50dp">
 
-                <ImageView
-                    android:id="@+id/room_image"
+                <TextView
+                    android:id="@+id/room_num"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_room" />
+                    android:gravity="center"
+                    android:text="@string/dot"
+                    android:textSize="24sp"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textStyle="bold"/>
 
             </androidx.cardview.widget.CardView>
 

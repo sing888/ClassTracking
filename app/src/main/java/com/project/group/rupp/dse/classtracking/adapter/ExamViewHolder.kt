@@ -17,7 +17,7 @@ class ExamViewHolder(private val binding: ViewHolderExamBinding): RecyclerView.V
         binding.examName.text = data.name
         binding.examScore.text = data.max_score.toString()
         binding.examMore.setOnClickListener {
-            showMenu(it.context, it, R.menu.room_more, examViewModel, data)
+            showMenu(it.context, it, R.menu.all_more, examViewModel, data)
         }
     }
 

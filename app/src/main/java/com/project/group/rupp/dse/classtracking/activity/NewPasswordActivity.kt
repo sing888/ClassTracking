@@ -21,6 +21,7 @@ class NewPasswordActivity: Activity(){
             startActivity(Intent(this, SigninActivity::class.java))
         }
 
+        binding.backButton.text = "<"
         binding.backButton.setOnClickListener{
             finish()
         }

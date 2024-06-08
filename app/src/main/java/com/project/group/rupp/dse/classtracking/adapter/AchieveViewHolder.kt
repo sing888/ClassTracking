@@ -10,31 +10,28 @@ import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.databinding.ViewHolderAchieveBinding
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
+import com.project.group.rupp.dse.classtracking.viewmodels.AchieveViewModel
 
 class AchieveViewHolder(private val binding: ViewHolderAchieveBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(room: GetAchieve) {
+    fun bind(room: GetAchieve, position: Int ,achieveViewModel: AchieveViewModel?) {
+//        binding.roomNum.text = (position + 1).toString()
         binding.roomName.text = room.name
         binding.roomDescription.text = room.room_code
 
         binding.roomMore.setOnClickListener {
-            showMenu(it.context, it, R.menu.room_more)
+            showMenu(it.context, it, R.menu.achieve_more, achieveViewModel, room)
         }
     }
 
-    private fun showMenu(context: Context, v: View, @MenuRes menuRes: Int) {
+    private fun showMenu(context: Context, v: View, @MenuRes menuRes: Int, achieveViewModel: AchieveViewModel?, room: GetAchieve) {
         val popup = PopupMenu(context, v)
         popup.menuInflater.inflate(menuRes, popup.menu)
 
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
-                R.id.menu_edit -> {
-                    Snackbar.make(v, "Edit room", Snackbar.LENGTH_SHORT).show()
-                    true
-                }
-
-                R.id.menu_delete -> {
-                    Snackbar.make(v, "Delete room", Snackbar.LENGTH_SHORT).show()
+                R.id.menu_unachieve -> {
+                    achieveViewModel?.getUnachieve(context, room.classroom_id)
                     true
                 }
 
