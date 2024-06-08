@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:cardCornerRadius="24dp"
-        android:backgroundTint="@color/primary">
+        android:backgroundTint="@color/md_theme_primaryContainer">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sign_in_button"
@@ -73,13 +73,13 @@
             android:text="@string/sign_in"
             android:layout_margin="0dp"
             android:layout_gravity="center"
-            android:backgroundTint="@color/primary"
+            android:backgroundTint="@color/md_theme_primaryContainer"
             android:visibility="visible"/>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:layout_width="100dp"
             android:layout_height="50dp"
-            app:indicatorColor="@color/secondary"
+            app:indicatorColor="@color/md_theme_secondaryContainer"
             android:layout_gravity="center"
             android:indeterminate="true"
             android:id="@+id/sign_in_loading"
@@ -95,7 +95,8 @@
         android:textSize="16dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/sign_in_google"
@@ -104,7 +105,8 @@
         android:layout_gravity="center"
         app:cardCornerRadius="30dp"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="match_parent"
@@ -150,7 +152,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/primary"/>
+            android:textColor="@color/md_theme_primaryContainer"/>
 
     </LinearLayout>
 

@@ -36,7 +36,7 @@ class RoomAdapter: RecyclerView.Adapter<RoomViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-        holder.bind(dataset[position], roomViewModel)
+        holder.bind(dataset[position], position, roomViewModel)
 
         holder.itemView.setOnClickListener {
             listener?.onViewRecycled(holder)

@@ -26,11 +26,12 @@ class MemberActivity: AppCompatActivity(){
 
         val room_id = intent.getStringExtra("room_id")
 
-        binding.ivBack.setOnClickListener {
+        binding.roomBack.text = "<"
+        binding.roomBack.setOnClickListener {
             finish()
         }
 
-        binding.tvName.text = "Members"
+        binding.roomName.text = "Members"
 
         memberViewModel.memberUiState.observe(this, Observer {uiState ->
             when(uiState.status){

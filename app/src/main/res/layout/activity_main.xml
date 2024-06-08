@@ -20,7 +20,7 @@
         android:layout_height="75dp"
         app:menu="@menu/activity_main"
         app:labelVisibilityMode="labeled"
-        app:itemIconTint="@color/black"
-        app:itemTextColor="@color/black" />
+        app:itemIconTint="@color/md_theme_onSurface"
+        app:itemTextColor="@color/md_theme_onSurface" />
 
 </LinearLayout>

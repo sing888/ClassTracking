@@ -16,6 +16,8 @@ class ForgotPasswordActivity: Activity(){
         _binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.backButton.text = "<"
+
         binding.forgotPasswordButton.setOnClickListener{
             // start sign in activity
             startActivity(Intent(this, NewPasswordActivity::class.java))

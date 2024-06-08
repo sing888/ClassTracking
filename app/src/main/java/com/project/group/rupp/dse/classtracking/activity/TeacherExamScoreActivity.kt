@@ -33,6 +33,7 @@ class TeacherExamScoreActivity: AppCompatActivity() {
         val adapter = ExamScoreAdapter()
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+        binding.roomBack.text = "<"
         binding.roomBack.setOnClickListener {
             finish()
         }

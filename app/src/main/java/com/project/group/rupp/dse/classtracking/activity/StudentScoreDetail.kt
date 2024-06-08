@@ -30,8 +30,9 @@ class StudentScoreDetail: AppCompatActivity(){
         val member_Id = intent.getStringExtra("member_id")
         val class_Id = intent.getStringExtra("classroom_id")
 
-        binding.tvName.text = member_Name.toString()
-        binding.ivBack.setOnClickListener {
+        binding.roomName.text = member_Name.toString()
+        binding.roomBack.text = "<"
+        binding.roomBack.setOnClickListener {
             finish()
         }
 

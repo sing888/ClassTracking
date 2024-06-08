@@ -14,7 +14,8 @@ import com.project.group.rupp.dse.classtracking.viewmodels.AchieveViewModel
 
 class AchieveViewHolder(private val binding: ViewHolderAchieveBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(room: GetAchieve, achieveViewModel: AchieveViewModel?) {
+    fun bind(room: GetAchieve, position: Int ,achieveViewModel: AchieveViewModel?) {
+//        binding.roomNum.text = (position + 1).toString()
         binding.roomName.text = room.name
         binding.roomDescription.text = room.room_code
 
@@ -29,11 +30,6 @@ class AchieveViewHolder(private val binding: ViewHolderAchieveBinding) : Recycle
 
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
-                R.id.menu_edit -> {
-                    Snackbar.make(v, "Edit room", Snackbar.LENGTH_SHORT).show()
-                    true
-                }
-
                 R.id.menu_unachieve -> {
                     achieveViewModel?.getUnachieve(context, room.classroom_id)
                     true

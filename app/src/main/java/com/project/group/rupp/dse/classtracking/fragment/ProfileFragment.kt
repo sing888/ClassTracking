@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.SigninActivity
 import com.project.group.rupp.dse.classtracking.databinding.FragmentProfileBinding
@@ -71,6 +72,10 @@ class ProfileFragment: Fragment(){
         })
 
         profileViewModel.getProfile(requireContext())
+
+        binding.editProfileButton.setOnClickListener {
+            Snackbar.make(view, "Edit Profile", Snackbar.LENGTH_SHORT).show()
+        }
 
     }
 

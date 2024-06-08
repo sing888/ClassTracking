@@ -41,6 +41,7 @@ class ExamActivity: AppCompatActivity(){
 
         binding.roomName.text = className + "(${subjectName})"
 
+        binding.roomBack.text = "<"
         binding.roomBack.setOnClickListener {
             finish()
         }
