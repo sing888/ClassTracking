@@ -1,6 +1,7 @@
 package com.project.group.rupp.dse.classtracking.activity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -69,7 +70,10 @@ class ExamActivity: AppCompatActivity(){
 
         adapter.setListener{ index: RecyclerView.ViewHolder ->
             val exam = data[index.adapterPosition]
-            Snackbar.make(binding.root, "${data[index.adapterPosition].name}", Snackbar.LENGTH_SHORT).show()
+            val intent : Intent = Intent(this, TeacherExamScoreActivity::class.java)
+            intent.putExtra("exam_id", exam.exam_id)
+            intent.putExtra("exam_name", exam.name)
+            startActivity(intent)
         }
 
         binding.btnAddExam.setOnClickListener {

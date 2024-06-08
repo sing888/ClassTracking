@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
 import com.project.group.rupp.dse.classtracking.adapter.AchieveAdapter
@@ -26,12 +28,13 @@ class AchieveFragment: Fragment() {
     private val binding get() = _binding!!
 
     private val achieveViewModel: AchieveViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_achieve, container, false)
+    ): View {
+        return FragmentAchieveBinding.inflate(inflater, container, false).root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +43,10 @@ class AchieveFragment: Fragment() {
 
         var data = listOf<GetAchieve>()
         val adapter= AchieveAdapter()
+        // layout manager
+        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        adapter.setAchieveViewModel(achieveViewModel)
 
         achieveViewModel.achieveModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
             when (uiState.status) {
@@ -58,6 +65,10 @@ class AchieveFragment: Fragment() {
                         binding.noAchieveClassroomFound.visibility = View.VISIBLE
                         binding.noAchieveClassroomFound.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
                         adapter.setDataset(data)
+
+                        // recycler view
+                        binding.recyclerViewAchieve.layoutManager = layoutManager
+                        binding.recyclerViewAchieve.adapter = adapter
                     }
 
                 }
@@ -73,27 +84,54 @@ class AchieveFragment: Fragment() {
 
         achieveViewModel.getRoom(this.requireContext())
 
-        // layout manager
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this.requireContext(), LinearLayoutManager.VERTICAL, false)
+        achieveViewModel.unachieveModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
+            when (uiState.status) {
+                UiStateStatus.loading -> {
+                }
+                UiStateStatus.success -> {
+                    achieveViewModel.getRoom(this.requireContext())
+                    Snackbar.make(view, "Unachieve success", Snackbar.LENGTH_SHORT).show()
+                }
+                UiStateStatus.error -> {
+                    Snackbar.make(view, "Unachieve failed", Snackbar.LENGTH_SHORT).show()
+                }
+            }
+        })
 
-        // recycler view
-        binding.recyclerViewAchieve.layoutManager = layoutManager
-        binding.recyclerViewAchieve.adapter = adapter
+
+        var room : GetAchieve ? = null
 
         adapter.setListener { index: RecyclerView.ViewHolder? ->
-            val room = data[index!!.adapterPosition]
-//            Toast.makeText(requireContext(), "Room_id: ${room.classroom_id}", Toast.LENGTH_SHORT).show()
-            val intent: Intent = Intent(this.requireContext(), RoomActivity::class.java)
-            intent.putExtra("room_id", room.classroom_id)
-            intent.putExtra("room_name", room.name)
-            intent.putExtra("room_code", room.room_code)
-            intent.putExtra("room_password", "")
-            intent.putExtra("account_id", "")
-            intent.putExtra("room_type", "student")
-
-            startActivity(intent)
+            room = data[index!!.adapterPosition]
+            achieveViewModel.getRole(this.requireContext(), room!!.classroom_id)
 
         }
 
+        achieveViewModel.roleModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
+            when (uiState.status) {
+                UiStateStatus.loading -> {
+                }
+                UiStateStatus.success -> {
+                    binding.progressLayoutAchieve.visibility = View.GONE
+                    val intent: Intent = Intent(this.requireContext(), RoomActivity::class.java)
+                    intent.putExtra("room_id", room!!.classroom_id)
+                    intent.putExtra("room_name", room!!.name)
+                    intent.putExtra("room_code", room!!.room_code)
+                    intent.putExtra("room_password", "")
+                    intent.putExtra("account_id", "")
+                    intent.putExtra("room_type", uiState.data!!.data!!)
+
+                    startActivity(intent)
+                }
+                UiStateStatus.error -> {
+                }
+            }
+        })
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

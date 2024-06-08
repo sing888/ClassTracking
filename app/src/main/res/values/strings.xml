@@ -81,6 +81,9 @@
     <string name="cancel">Cancel</string>
     <string name="no_exam">No exam found.</string>
     <string name="no_subject">No subject found.</string>
+    <string name="exam">Exam</string>
+    <string name="max_score">Max Score : </string>
+    <string name="class_tracking">Class Tracking</string>
 
 
 </resources>

@@ -16,7 +16,7 @@ class SubjectViewHolder(private val binding: ViewHolderScoreTeacherBinding): Rec
     fun bind(subject: GetTeacherSubject, subjectViewHolder: TeacherScoreViewModel){
         binding.subName.text = subject.name
         binding.subMore.setOnClickListener {
-            showMenu(it.context, it, R.menu.room_more, subjectViewHolder, subject.subject_id)
+            showMenu(it.context, it, R.menu.all_more, subjectViewHolder, subject.subject_id)
         }
     }
 
