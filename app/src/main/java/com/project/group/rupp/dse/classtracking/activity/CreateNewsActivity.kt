@@ -28,6 +28,8 @@ class CreateNewsActivity : AppCompatActivity() {
 
         binding.roomName.text = header
 
+        binding.newsBack.text = "<"
+
         binding.newsBack.setOnClickListener {
             finish()
         }

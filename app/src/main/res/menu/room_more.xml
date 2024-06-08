@@ -4,10 +4,4 @@
         android:id="@+id/menu_achieve"
         android:icon="@drawable/ic_achieve"
         android:title="Mark Achieve" />
-    <item
-        android:id="@+id/menu_edit"
-        android:icon="@drawable/ic_edit"
-        android:title="Edit" />
-
-
 </menu>

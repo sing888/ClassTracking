@@ -9,6 +9,7 @@ import android.support.annotation.MenuRes
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.databinding.ActivityCreateNewRoomBinding
 import com.project.group.rupp.dse.classtracking.fragment.CreateRoomFragment
@@ -27,6 +28,7 @@ class CreateNewRoomActivity: AppCompatActivity(){
         val fragmentContainer = binding.fragmentCreateNewRoom
         startScreen(binding, fragmentContainer)
 
+        binding.roomBack.text = "<"
 
         binding.roomBack.setOnClickListener {
             finish()
@@ -34,8 +36,8 @@ class CreateNewRoomActivity: AppCompatActivity(){
 
         binding.btnCreateRoom.setOnClickListener {
             binding.roomName.text = "Create New Room"
-            binding.btnCreateRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFD1E8D6"));
-            binding.btnJoinRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFFFF"));
+            binding.btnCreateRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_primaryContainer);
+            binding.btnJoinRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_surface);
             val fragmentManager = supportFragmentManager.beginTransaction()
             fragmentManager.replace(fragmentContainer.id, CreateRoomFragment())
             fragmentManager.commit()
@@ -43,8 +45,8 @@ class CreateNewRoomActivity: AppCompatActivity(){
         }
         binding.btnJoinRoom.setOnClickListener {
             binding.roomName.text = "Join New Room"
-            binding.btnJoinRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFD1E8D6"));
-            binding.btnCreateRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFFFF"));
+            binding.btnJoinRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_primaryContainer);
+            binding.btnCreateRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_surface);
             val fragmentManager = supportFragmentManager.beginTransaction()
             fragmentManager.replace(fragmentContainer.id, JoinRoomFragment())
             fragmentManager.commit()
@@ -61,14 +63,14 @@ class CreateNewRoomActivity: AppCompatActivity(){
         binding.roomName.text = head
 
         if (head == "Create New Room") {
-            binding.btnCreateRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFD1E8D6"));
-            binding.btnJoinRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFFFF"));
+            binding.btnCreateRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_primaryContainer);
+            binding.btnJoinRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_surface);
             val fragmentManager = supportFragmentManager.beginTransaction()
             fragmentManager.replace(fragmentContainer.id, CreateRoomFragment())
             fragmentManager.commit()
         } else {
-            binding.btnJoinRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFD1E8D6"));
-            binding.btnCreateRoom.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#FFFFFFFF"));
+            binding.btnJoinRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_primaryContainer);
+            binding.btnCreateRoom.backgroundTintList = ContextCompat.getColorStateList(this, R.color.md_theme_surface);
             val fragmentManager = supportFragmentManager.beginTransaction()
             fragmentManager.replace(fragmentContainer.id, JoinRoomFragment())
             fragmentManager.commit()

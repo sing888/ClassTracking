@@ -4,14 +4,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/md_theme_surface">
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:layout_marginTop="150dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_fe_logo"
-        android:layout_marginTop="150dp"/>
+        app:cardCornerRadius="12dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_fe_logo" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,7 +28,7 @@
         android:text="@string/app_name"
         android:textSize="36dp"
         android:textStyle="bold"
-        android:textColor="@color/primary"
+        android:textColor="@color/md_theme_primaryContainer"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"/>
 
@@ -47,7 +56,6 @@
         android:layout_height="wrap_content"
         android:text="@string/power_by"
         android:textSize="14dp"
-        android:textColor="@color/black"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"/>
 
@@ -56,7 +64,7 @@
         android:layout_height="wrap_content"
         android:text="@string/mobile_app_development_ii"
         android:textSize="18dp"
-        android:textColor="@color/primary"
+        android:textColor="@color/md_theme_primaryContainer"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"/>
 

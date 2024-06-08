@@ -12,7 +12,8 @@ import com.project.group.rupp.dse.classtracking.models.GetRoom
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomViewModel
 
 class RoomViewHolder(private val binding: ViewHolderRoomBinding) : RecyclerView.ViewHolder(binding.root){
-    fun bind(room: GetRoom, roomViewModel: RoomViewModel?){
+    fun bind(room: GetRoom, position: Int , roomViewModel: RoomViewModel?){
+//        binding.roomNum.text = (position + 1).toString()
         binding.roomName.text = room.name
         binding.roomDescription.text = room.room_code
         binding.roomMore.setOnClickListener {
@@ -26,11 +27,6 @@ class RoomViewHolder(private val binding: ViewHolderRoomBinding) : RecyclerView.
 
         popup.setOnMenuItemClickListener { menuItem: MenuItem ->
             when (menuItem.itemId) {
-                R.id.menu_edit -> {
-                    Snackbar.make(v, "Edit room", Snackbar.LENGTH_SHORT).show()
-                    true
-                }
-
                 R.id.menu_achieve -> {
                     roomViewModel?.getMakeAchieve(context, data.classroom_id)
                     true

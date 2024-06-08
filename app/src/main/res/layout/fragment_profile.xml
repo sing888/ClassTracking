@@ -54,7 +54,21 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="bottom|end">
 
+                <ImageView
+                    android:id="@+id/edit_profile_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -100,7 +114,6 @@
         android:id="@+id/loading_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blur_background"
         android:visibility="visible">
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -110,7 +123,7 @@
             app:indicatorColor="@color/primary"
             android:layout_gravity="center"
             android:indeterminate="true"
-            app:trackColor="@color/secondary" />
+            app:trackColor="@color/md_theme_secondaryContainer" />
 
     </FrameLayout>
 
@@ -121,7 +134,7 @@
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/logout"
         android:text="@string/log_out"
-        android:textColor="@color/white"
+        android:textColor="@color/md_theme_surface"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 

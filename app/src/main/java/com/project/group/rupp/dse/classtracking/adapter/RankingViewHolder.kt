@@ -12,10 +12,10 @@ class RankingViewHolder(private val binding: ViewHolderRankingBinding) : Recycle
         binding.tvScore.text = rank.average_score.toString() + " >"
 
         if (rank.member_id == member_id) {
-            binding.attendanceStudentCardView.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.md_theme_primary)
-            binding.tvName.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
-            binding.tvNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
-            binding.tvScore.setTextColor(ContextCompat.getColor(binding.root.context, R.color.white))
+            binding.attendanceStudentCardView.backgroundTintList = ContextCompat.getColorStateList(binding.root.context, R.color.md_theme_primaryContainer)
+            binding.tvName.setTextColor(ContextCompat.getColor(binding.root.context, R.color.md_theme_surface))
+            binding.tvNum.setTextColor(ContextCompat.getColor(binding.root.context, R.color.md_theme_surface))
+            binding.tvScore.setTextColor(ContextCompat.getColor(binding.root.context, R.color.md_theme_surface))
         }
     }
 }

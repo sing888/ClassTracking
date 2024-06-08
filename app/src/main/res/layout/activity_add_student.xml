@@ -48,7 +48,7 @@
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/secondary"
+                android:backgroundTint="@color/md_theme_secondaryContainer"
                 android:text="@string/student" />
 
 

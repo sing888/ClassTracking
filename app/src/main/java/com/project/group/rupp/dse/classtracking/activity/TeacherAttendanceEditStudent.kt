@@ -29,6 +29,7 @@ class TeacherAttendanceEditStudent: AppCompatActivity(){
         val adapter = TeacherEditStudentAdapter()
         val LinearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
+        binding.roomBack.text = "<"
         binding.roomName.text = "Add Student ($className)"
 
         binding.roomBack.setOnClickListener {

@@ -51,7 +51,7 @@
             android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:text="@string/student"
-            android:backgroundTint="@color/secondary" />
+            android:backgroundTint="@color/md_theme_secondaryContainer" />
 
 
         <Button
@@ -83,7 +83,7 @@
                 app:indicatorSize="50dp"
                 app:trackThickness="5dp"
                 app:trackColor="@color/primary"
-                app:indicatorColor="@color/secondary" />
+                app:indicatorColor="@color/md_theme_secondaryContainer" />
 
         </FrameLayout>
 

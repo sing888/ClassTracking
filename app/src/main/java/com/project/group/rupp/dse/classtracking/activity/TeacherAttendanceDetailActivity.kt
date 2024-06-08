@@ -32,6 +32,7 @@ class TeacherAttendanceDetailActivity: AppCompatActivity(){
 
         binding.roomName.text = "Attendance Detail (" + roomName + ")"
 
+        binding.roomBack.text = "<"
         binding.roomBack.setOnClickListener {
             finish()
         }

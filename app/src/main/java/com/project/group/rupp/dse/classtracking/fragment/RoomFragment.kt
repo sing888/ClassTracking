@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter
 import android.widget.CursorAdapter
 import android.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -107,16 +108,16 @@ class RoomFragment : Fragment() {
 
         binding.btnRoomStudent.setOnClickListener {
             roomtype = "student"
-            binding.btnRoomStudent.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1E8D6")));
-            binding.btnRoomTeacher.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFFFF")));
+            binding.btnRoomStudent.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_secondaryContainer))
+            binding.btnRoomTeacher.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_surface));
 
             roomViewModel.getStudentRooms(requireContext())
         }
 
         binding.btnRoomTeacher.setOnClickListener {
             roomtype = "teacher"
-            binding.btnRoomTeacher.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD1E8D6")));
-            binding.btnRoomStudent.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFFFFFFF")));
+            binding.btnRoomTeacher.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_secondaryContainer));
+            binding.btnRoomStudent.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_surface));
 
             roomViewModel.getTeacherRooms(requireContext())
         }

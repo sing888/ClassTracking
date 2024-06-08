@@ -37,7 +37,7 @@ class AchieveAdapter : RecyclerView.Adapter<AchieveViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: AchieveViewHolder, position: Int) {
-        holder.bind(dataset[position], achieveViewModel)
+        holder.bind(dataset[position], position, achieveViewModel)
 
         holder.itemView.setOnClickListener {
             listener?.onViewRecycled(holder)
