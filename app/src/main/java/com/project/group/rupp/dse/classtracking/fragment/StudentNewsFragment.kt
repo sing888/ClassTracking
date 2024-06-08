@@ -2,16 +2,20 @@ package com.project.group.rupp.dse.classtracking.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.adapter.NewsAdapter
@@ -21,7 +25,7 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.NewsViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
 
-class StudentNewsFragment: Fragment() {
+class StudentNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
     private var _binding: FragmentStudentNewsBinding? = null
     private val binding get() = _binding!!
 
@@ -49,6 +53,9 @@ class StudentNewsFragment: Fragment() {
 
         newsViewModel.getStudentNews(requireContext(), roomMainViewModel.roomId.value!!)
 
+        binding.swipeRefreshContainer.setOnRefreshListener(this)
+
+
         var data: List<GetNews>
         newsViewModel.newsModelUiState.observe(viewLifecycleOwner, Observer { uiState ->
             when (uiState.status){
@@ -60,7 +67,6 @@ class StudentNewsFragment: Fragment() {
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
                     data = uiState.data?.data!!
-                    Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
                     if (data.isEmpty()){
                         binding.textViewStudentNews.visibility = View.VISIBLE
                         binding.textViewStudentNews.text = "No news found"
@@ -73,7 +79,8 @@ class StudentNewsFragment: Fragment() {
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     binding.textViewStudentNews.visibility = View.VISIBLE
-                    binding.textViewStudentNews.text = "News not found"
+                    binding.textViewStudentNews.text = "This room has no news at the moment."
+                    binding.textViewStudentNews.textSize = 16F
                     Log.e("StudentNewsFragment", "Error fetching student news: ${uiState.message}")
                 }
             }
@@ -85,5 +92,13 @@ class StudentNewsFragment: Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            newsViewModel.getStudentNews(requireContext(), roomMainViewModel.roomId.value!!)
+            Toast.makeText(requireContext(), "Refreshed", Toast.LENGTH_LONG).show()
+            binding.swipeRefreshContainer.isRefreshing = false
+        }, 300)
     }
 }
