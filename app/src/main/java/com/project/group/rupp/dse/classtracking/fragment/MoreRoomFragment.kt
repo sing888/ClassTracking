@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
+import com.project.group.rupp.dse.classtracking.activity.ClassroomSettingActivity
 import com.project.group.rupp.dse.classtracking.activity.MemberActivity
 import com.project.group.rupp.dse.classtracking.databinding.FragmentRoomMoreBinding
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
@@ -44,6 +45,19 @@ class MoreRoomFragment: Fragment() {
             room_id = it
         })
 
+        if (roomMainViewModel.roomType.value == "teacher") {
+            binding.btnSetting.visibility = View.VISIBLE
+        } else {
+            binding.btnSetting.visibility = View.GONE
+        }
+
+        binding.btnSetting.setOnClickListener {
+            val intent: Intent = Intent(requireContext(), ClassroomSettingActivity::class.java)
+            intent.putExtra("room_id", room_id)
+            intent.putExtra("room_name", roomMainViewModel.roomName.value)
+            intent.putExtra("room_type", roomMainViewModel.roomType.value)
+            startActivity(intent)
+        }
 
 
     }

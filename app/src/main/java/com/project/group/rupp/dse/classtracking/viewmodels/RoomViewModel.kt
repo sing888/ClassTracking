@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.project.group.rupp.dse.classtracking.RetrofitInstance
 import com.project.group.rupp.dse.classtracking.models.GetMakeAchieve
 import com.project.group.rupp.dse.classtracking.models.GetRoom
+import com.project.group.rupp.dse.classtracking.models.PostChangeClassroom
 import com.project.group.rupp.dse.classtracking.models.Response
 import com.project.group.rupp.dse.classtracking.models.UiState
 import com.project.group.rupp.dse.classtracking.models.UiStateStatus
@@ -17,10 +18,12 @@ class RoomViewModel: ViewModel() {
     private var _achieveModelUiState = MutableLiveData<UiState<Response<GetMakeAchieve>>>()
     private var _roleModelUiState = MutableLiveData<UiState<Response<String>>>()
     private var _searchModelUiState = MutableLiveData<UiState<Response<List<GetRoom>>>>()
+    private var _changeClassroomUiState = MutableLiveData<UiState<Response<String>>>()
     val roomModelUiState: LiveData<UiState<Response<List<GetRoom>>>> get() = _roomModelUiState
     val achieveModelUiState: LiveData<UiState<Response<GetMakeAchieve>>> get() = _achieveModelUiState
     val roleModelUiState: LiveData<UiState<Response<String>>> get() = _roleModelUiState
     val searchModelUiState: LiveData<UiState<Response<List<GetRoom>>>> get() = _searchModelUiState
+    val changeClassroomUiState: LiveData<UiState<Response<String>>> get() = _changeClassroomUiState
 
     fun getTeacherRooms(context: Context){
         _roomModelUiState.value = UiState(UiStateStatus.loading)
@@ -122,6 +125,28 @@ class RoomViewModel: ViewModel() {
 
             override fun onFailure(call: Call<Response<List<GetRoom>>>, t: Throwable) {
                 _searchModelUiState.value = UiState(UiStateStatus.error, message = "Error: ${t.message}")
+            }
+        })
+    }
+
+    fun changeClassroom(context: Context, classroomId: String , className: String, status: String, password: String,){
+        _changeClassroomUiState.value = UiState(UiStateStatus.loading)
+
+        val apiService = RetrofitInstance.create(context)
+
+        val data = PostChangeClassroom(className, status, password)
+
+        apiService.updateRoom(classroomId, data).enqueue(object : retrofit2.Callback<Response<String>>{
+            override fun onResponse(call: Call<Response<String>>, response: retrofit2.Response<Response<String>>) {
+                if(response.isSuccessful){
+                    _changeClassroomUiState.value = UiState(UiStateStatus.success, data = response.body())
+                }else{
+                    _changeClassroomUiState.value = UiState(UiStateStatus.error, message = "Error: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Response<String>>, t: Throwable) {
+                _changeClassroomUiState.value = UiState(UiStateStatus.error, message = "Error: ${t.message}")
             }
         })
     }

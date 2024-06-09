@@ -9,9 +9,11 @@ class RoomMainViewModel: ViewModel() {
     private val _roomId = MutableLiveData<String>()
     private val _account_id = MutableLiveData<String>()
     private val _roomName = MutableLiveData<String>()
+    private val _roomType = MutableLiveData<String>()
     val roomId: LiveData<String> get() = _roomId
     val account_id: LiveData<String> get() = _account_id
     val roomName: LiveData<String> get() = _roomName
+    val roomType: LiveData<String> get() = _roomType
 
 
     fun setRoomId(value: String) {
@@ -22,6 +24,10 @@ class RoomMainViewModel: ViewModel() {
     }
     fun setRoomName(value: String) {
         _roomName.value = value
+    }
+
+    fun setRoomType(value: String) {
+        _roomType.value = value
     }
 
 
