@@ -1,15 +1,19 @@
 package com.project.group.rupp.dse.classtracking.fragment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.RoomActivity
@@ -19,7 +23,7 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.StudentAttendanceViewModel
 
-class StudentAttendanceFragment: Fragment(){
+class StudentAttendanceFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
     private var _binding: FragmentAttendanceStudentBinding? = null
     private val binding get() = _binding!!
     private val studentAttendanceViewModel: StudentAttendanceViewModel by viewModels()
@@ -40,6 +44,7 @@ class StudentAttendanceFragment: Fragment(){
 
         var adapter = StudentAttendanceAdapter()
 
+        binding.swipeRefreshContainer.setOnRefreshListener(this)
         studentAttendanceViewModel.attendancemodelUiState.observe(viewLifecycleOwner, Observer{ uiState ->
             when (uiState.status) {
                 UiStateStatus.loading -> {
@@ -93,5 +98,14 @@ class StudentAttendanceFragment: Fragment(){
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            studentAttendanceViewModel.getStudentAttendance(requireContext(), roomMainViewModel.roomId.value!!)
+            studentAttendanceViewModel.getStudentAttendanceDetail(requireContext(), roomMainViewModel.roomId.value!!)
+            Toast.makeText(requireContext(), "Refreshed", Toast.LENGTH_LONG).show()
+            binding.swipeRefreshContainer.isRefreshing = false
+        }, 300)
     }
 }

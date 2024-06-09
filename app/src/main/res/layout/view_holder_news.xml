@@ -11,7 +11,7 @@
         android:layout_marginHorizontal="10dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/md_theme_inverseOnSurface"
+        android:backgroundTint="@color/white"
         app:cardCornerRadius="12dp">
 
         <LinearLayout

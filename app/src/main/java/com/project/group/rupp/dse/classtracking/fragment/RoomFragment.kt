@@ -7,6 +7,8 @@ import android.content.res.ColorStateList
 import android.database.Cursor
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.support.annotation.MenuRes
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,6 +19,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.CursorAdapter
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -24,6 +27,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.search.SearchBar
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
@@ -36,7 +40,7 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.MainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomViewModel
 
-class RoomFragment : Fragment() {
+class RoomFragment : Fragment(){
     private var _binding: FragmentRoomBinding? = null
     private val binding get() = _binding!!
 
@@ -44,6 +48,7 @@ class RoomFragment : Fragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private var account_id: String = ""
+    private var roomtype: String = "student"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,11 +63,12 @@ class RoomFragment : Fragment() {
         _binding = FragmentRoomBinding.bind(view)
 
         var search = false
-        var room : GetRoom? = null
+        var room: GetRoom? = null
         var data = listOf<GetRoom>()
         val adapter = RoomAdapter()
         var roomtype = "student"
-        val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        val layoutManager: RecyclerView.LayoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
 
         roomViewModel.getStudentRooms(requireContext())
@@ -108,16 +114,36 @@ class RoomFragment : Fragment() {
 
         binding.btnRoomStudent.setOnClickListener {
             roomtype = "student"
-            binding.btnRoomStudent.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_secondaryContainer))
-            binding.btnRoomTeacher.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_surface));
+            binding.btnRoomStudent.setBackgroundTintList(
+                ContextCompat.getColorStateList(
+                    requireContext(),
+                    R.color.md_theme_secondaryContainer
+                )
+            )
+            binding.btnRoomTeacher.setBackgroundTintList(
+                ContextCompat.getColorStateList(
+                    requireContext(),
+                    R.color.md_theme_surface
+                )
+            );
 
             roomViewModel.getStudentRooms(requireContext())
         }
 
         binding.btnRoomTeacher.setOnClickListener {
             roomtype = "teacher"
-            binding.btnRoomTeacher.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_secondaryContainer));
-            binding.btnRoomStudent.setBackgroundTintList(ContextCompat.getColorStateList(requireContext(), R.color.md_theme_surface));
+            binding.btnRoomTeacher.setBackgroundTintList(
+                ContextCompat.getColorStateList(
+                    requireContext(),
+                    R.color.md_theme_secondaryContainer
+                )
+            );
+            binding.btnRoomStudent.setBackgroundTintList(
+                ContextCompat.getColorStateList(
+                    requireContext(),
+                    R.color.md_theme_surface
+                )
+            );
 
             roomViewModel.getTeacherRooms(requireContext())
         }
@@ -128,6 +154,7 @@ class RoomFragment : Fragment() {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewRoom.visibility = View.GONE
                 }
+
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
                     data = uiState.data?.data!!
@@ -142,6 +169,7 @@ class RoomFragment : Fragment() {
                         binding.recyclerViewRoom.layoutManager = layoutManager
                     }
                 }
+
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     binding.textViewRoom.visibility = View.VISIBLE
@@ -157,6 +185,7 @@ class RoomFragment : Fragment() {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewRoom.visibility = View.GONE
                 }
+
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
                     data = uiState.data?.data!!
@@ -171,6 +200,7 @@ class RoomFragment : Fragment() {
                         binding.recyclerViewRoom.layoutManager = layoutManager
                     }
                 }
+
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     binding.textViewRoom.visibility = View.VISIBLE
@@ -186,6 +216,7 @@ class RoomFragment : Fragment() {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewRoom.visibility = View.GONE
                 }
+
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
                     if (roomtype == "teacher")
@@ -194,6 +225,7 @@ class RoomFragment : Fragment() {
                         roomViewModel.getStudentRooms(requireContext())
                     Snackbar.make(view, "Achieve success", Snackbar.LENGTH_SHORT).show()
                 }
+
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     Snackbar.make(view, "Achieve failed", Snackbar.LENGTH_SHORT).show()
@@ -205,6 +237,7 @@ class RoomFragment : Fragment() {
             when (uiState.status) {
                 UiStateStatus.loading -> {
                 }
+
                 UiStateStatus.success -> {
                     val role = uiState.data?.data
                     val intent = Intent(requireContext(), RoomActivity::class.java)
@@ -216,17 +249,18 @@ class RoomFragment : Fragment() {
                     intent.putExtra("account_id", account_id)
                     startActivity(intent)
                 }
+
                 UiStateStatus.error -> {
                     Snackbar.make(view, "Something went wrong!", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
 
-        adapter.setListener{ index: RecyclerView.ViewHolder? ->
+        adapter.setListener { index: RecyclerView.ViewHolder? ->
             room = data[index!!.adapterPosition]
             if (search) {
                 roomViewModel.getRole(requireContext(), room!!.classroom_id)
-            }else {
+            } else {
                 // give text to next screen with set extra
                 val intent: Intent = Intent(requireContext(), RoomActivity::class.java)
                 intent.putExtra("room_id", room!!.classroom_id)
@@ -240,11 +274,12 @@ class RoomFragment : Fragment() {
         }
 
         binding.floatingActionButton.setOnClickListener {
-            when(binding.floatingButtonMenuLayout.visibility){
+            when (binding.floatingButtonMenuLayout.visibility) {
                 View.VISIBLE -> {
                     binding.floatingButtonMenuLayout.visibility = View.GONE
                     binding.floatingActionButton.setImageResource(R.drawable.ic_add)
                 }
+
                 View.GONE -> {
                     binding.floatingButtonMenuLayout.visibility = View.VISIBLE
                     binding.floatingActionButton.setImageResource(R.drawable.ic_x)
@@ -274,6 +309,7 @@ class RoomFragment : Fragment() {
         })
 
     }
+
     private fun performSearch(query: String) {
         // Implement your search logic here
         roomViewModel.getSearch(requireContext(), query)
@@ -290,5 +326,7 @@ class RoomFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 }
 

@@ -1,10 +1,14 @@
 package com.project.group.rupp.dse.classtracking.activity
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.adapter.TeacherAttendanceDetailAdapter
 import com.project.group.rupp.dse.classtracking.databinding.ActivityAttendanceDetailBinding
@@ -17,6 +21,7 @@ class TeacherAttendanceDetailActivity: AppCompatActivity(){
     private val binding get() = _binding!!
 
     private val teacherAttendanceDetailViewModel: TeacherAttendanceDetailViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,11 @@ class TeacherAttendanceDetailActivity: AppCompatActivity(){
         binding.roomBack.setOnClickListener {
             finish()
         }
+
+        binding.swipeRefreshContainer.setOnRefreshListener {
+            onRefresh(classId.toString())
+        }
+
 
         teacherAttendanceDetailViewModel.attendanceDetailUiState.observe(this, Observer { uiState ->
             when (uiState.status) {
@@ -58,5 +68,13 @@ class TeacherAttendanceDetailActivity: AppCompatActivity(){
 
 
 
+    }
+
+    private fun onRefresh(classId: String) {
+        Handler(Looper.getMainLooper()).postDelayed({
+            teacherAttendanceDetailViewModel.getAttendanceDetail(this, classId)
+            Toast.makeText(this, "Refreshed", Toast.LENGTH_LONG).show()
+            binding.swipeRefreshContainer.isRefreshing = false
+        }, 300)
     }
 }

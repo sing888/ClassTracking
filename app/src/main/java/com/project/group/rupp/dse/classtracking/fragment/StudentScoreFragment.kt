@@ -2,9 +2,12 @@ package com.project.group.rupp.dse.classtracking.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -13,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.project.group.rupp.dse.classtracking.R
 import com.project.group.rupp.dse.classtracking.activity.StudentScoreDetail
@@ -24,7 +28,7 @@ import com.project.group.rupp.dse.classtracking.models.UiStateStatus
 import com.project.group.rupp.dse.classtracking.viewmodels.RoomMainViewModel
 import com.project.group.rupp.dse.classtracking.viewmodels.StudentScoreViewModel
 
-class StudentScoreFragment: Fragment(){
+class StudentScoreFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener{
     private var _binding: FragmentScoreStudentBinding? = null
     private val binding get() = _binding!!
     private val roomMainViewModel: RoomMainViewModel by activityViewModels()
@@ -32,6 +36,8 @@ class StudentScoreFragment: Fragment(){
 
     private var classroomId = ""
     private val adapter = RankingAdapter()
+
+    private var memberId: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,6 +74,7 @@ class StudentScoreFragment: Fragment(){
 //                studentScoreViewModel.getMemberId(requireContext(), classroomId)
 //            }
 //        })
+        binding.swipeRefreshContainer.setOnRefreshListener(this)
 
         // get room id from RoomMainViewModel
         roomMainViewModel.roomId.observe(viewLifecycleOwner, Observer {
@@ -151,5 +158,17 @@ class StudentScoreFragment: Fragment(){
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            // Fetch student scores using memberId
+            memberId?.let { memberId ->
+                studentScoreViewModel.getStudentScore(requireContext(), memberId, classroomId)
+                studentScoreViewModel.getStudentScoreList(requireContext(), classroomId)
+            }
+            Toast.makeText(requireContext(), "Refreshed", Toast.LENGTH_LONG).show()
+            binding.swipeRefreshContainer.isRefreshing = false
+        }, 300)
     }
 }
