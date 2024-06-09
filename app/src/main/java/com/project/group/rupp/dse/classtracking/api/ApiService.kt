@@ -1,5 +1,7 @@
 package com.project.group.rupp.dse.classtracking.api
 
+import android.net.Uri
+import android.widget.ImageView
 import com.project.group.rupp.dse.classtracking.models.PostCreateRoom
 import com.project.group.rupp.dse.classtracking.models.GetAchieve
 import com.project.group.rupp.dse.classtracking.models.GetAddExam
@@ -26,9 +28,11 @@ import com.project.group.rupp.dse.classtracking.models.GetTeacherAttendance
 import com.project.group.rupp.dse.classtracking.models.PostJoinNewRoom
 import com.project.group.rupp.dse.classtracking.models.PostMember
 import com.project.group.rupp.dse.classtracking.models.GetTeacherSubject
+import com.project.group.rupp.dse.classtracking.models.PostAccountDetail
 import com.project.group.rupp.dse.classtracking.models.PostAddExam
 import com.project.group.rupp.dse.classtracking.models.PostAddExamScore
 import com.project.group.rupp.dse.classtracking.models.PostAddSubject
+import com.project.group.rupp.dse.classtracking.models.PostChangeClassroom
 import com.project.group.rupp.dse.classtracking.models.PostNews
 import com.project.group.rupp.dse.classtracking.models.PostSignIn
 import com.project.group.rupp.dse.classtracking.models.PostSignUp
@@ -38,10 +42,15 @@ import retrofit2.Call
 import com.project.group.rupp.dse.classtracking.models.Profile
 import com.project.group.rupp.dse.classtracking.models.Response
 import com.project.group.rupp.dse.classtracking.models.SignInData
+import okhttp3.MultipartBody
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Query
 
 public interface ApiService {
@@ -185,6 +194,27 @@ public interface ApiService {
     fun makeUnAchieve(
         @Query("classroom_id") classroom_id: String
     ): Call<Response<GetMakeAchieve>>
+
+    @PUT("account/change/account/detail")
+    fun changeAccountDetail(
+        @Body postAccountDetail: PostAccountDetail
+    ): Call<Response<String>>
+
+    @Headers(
+        "accept: application/json",
+        "Content-Type: multipart/form-data"
+    )
+    @Multipart
+    @PUT("account/change/profile")
+    fun changeProfile(
+        @Part image: MultipartBody.Part,
+    ): Call<Response<String>>
+
+    @PUT("classroom/update")
+    fun updateRoom(
+        @Query("classroom_id") classroom_id: String,
+        @Body postChangeClassroom: PostChangeClassroom
+    ): Call<Response<String>>
 
     @DELETE("teacher/member")
     fun deleteMember(

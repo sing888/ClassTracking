@@ -64,7 +64,6 @@ class TeacherNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 UiStateStatus.loading -> {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewNews.visibility = View.GONE
-                    Log.d("News", "Loading")
                 }
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
@@ -72,10 +71,8 @@ class TeacherNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     if (data.isEmpty()){
                         binding.textViewNews.visibility = View.VISIBLE
                         binding.textViewNews.text = "No news found"
-                        Log.e("News", "No news found")
                     } else {
                         adapter.setDataset(data)
-                        Log.d("TeacherNews", "Have News")
                     }
                 }
                 UiStateStatus.error -> {
@@ -83,7 +80,6 @@ class TeacherNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     binding.textViewNews.visibility = View.VISIBLE
                     binding.textViewNews.text = "This room has no news at the moment."
                     binding.textViewNews.textSize = 16F
-                    Log.e("TeacherNewsFragment", "Error fetching teacher news: ${uiState.message}")
                 }
             }
         })

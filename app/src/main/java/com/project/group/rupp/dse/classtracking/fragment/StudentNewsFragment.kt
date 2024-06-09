@@ -62,7 +62,6 @@ class StudentNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 UiStateStatus.loading -> {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewStudentNews.visibility = View.GONE
-                    Log.d("News", "Loading")
                 }
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
@@ -70,10 +69,8 @@ class StudentNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     if (data.isEmpty()){
                         binding.textViewStudentNews.visibility = View.VISIBLE
                         binding.textViewStudentNews.text = "No news found"
-                        Log.e("News", "No news found")
                     } else {
                         adapter.setDataset(data)
-                        Log.d("StudentNews", "Have News")
                     }
                 }
                 UiStateStatus.error -> {
