@@ -55,26 +55,21 @@ class StudentNewsFragment: Fragment() {
                 UiStateStatus.loading -> {
                     binding.progressLayout.visibility = View.VISIBLE
                     binding.textViewStudentNews.visibility = View.GONE
-                    Log.d("News", "Loading")
                 }
                 UiStateStatus.success -> {
                     binding.progressLayout.visibility = View.GONE
                     data = uiState.data?.data!!
-                    Snackbar.make(binding.root, "Success", Snackbar.LENGTH_SHORT).show()
                     if (data.isEmpty()){
                         binding.textViewStudentNews.visibility = View.VISIBLE
                         binding.textViewStudentNews.text = "No news found"
-                        Log.e("News", "No news found")
                     } else {
                         adapter.setDataset(data)
-                        Log.d("StudentNews", "Have News")
                     }
                 }
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     binding.textViewStudentNews.visibility = View.VISIBLE
                     binding.textViewStudentNews.text = "News not found"
-                    Log.e("StudentNewsFragment", "Error fetching student news: ${uiState.message}")
                 }
             }
         })
