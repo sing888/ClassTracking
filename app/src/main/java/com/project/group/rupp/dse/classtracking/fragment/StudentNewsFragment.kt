@@ -69,7 +69,10 @@ class StudentNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     if (data.isEmpty()){
                         binding.textViewStudentNews.visibility = View.VISIBLE
                         binding.textViewStudentNews.text = "No news found"
+                        binding.rvCard.visibility = View.GONE
                     } else {
+                        binding.textViewStudentNews.visibility = View.GONE
+                        binding.rvCard.visibility = View.VISIBLE
                         adapter.setDataset(data)
                     }
                 }
@@ -78,7 +81,7 @@ class StudentNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     binding.textViewStudentNews.visibility = View.VISIBLE
                     binding.textViewStudentNews.text = "This room has no news at the moment."
                     binding.textViewStudentNews.textSize = 16F
-                    Log.e("StudentNewsFragment", "Error fetching student news: ${uiState.message}")
+                    binding.rvCard.visibility = View.GONE
                 }
             }
         })

@@ -33,7 +33,9 @@
         android:layout_gravity="center"
         android:id="@+id/textView_studentNews"
         android:visibility="gone" />
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/rv_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="10dp"

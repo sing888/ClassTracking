@@ -15,13 +15,28 @@ import com.project.group.rupp.dse.classtracking.viewmodels.AchieveViewModel
 class AchieveViewHolder(private val binding: ViewHolderAchieveBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(room: GetAchieve, position: Int ,achieveViewModel: AchieveViewModel?) {
-        if (room.status == "Public" || room.status == "public") {
-            binding.roomNum.text = "+"
-        }else if (room.status == "Private" || room.status == "private") {
-            binding.roomNum.text = "-"
-        }
-        else {
-            binding.roomNum.text = "o"
+        when (room.status) {
+            "public" -> {
+                binding.roomNum.text = "+"
+            }
+            "Public" -> {
+                binding.roomNum.text = "+"
+            }
+            "private" -> {
+                binding.roomNum.text = "-"
+            }
+            "Private" -> {
+                binding.roomNum.text = "-"
+            }
+            "invited" -> {
+                binding.roomNum.text = "o"
+            }
+            "Invited" -> {
+                binding.roomNum.text = "o"
+            }
+            else -> {
+                binding.roomNum.text = ""
+            }
         }
         binding.roomName.text = room.name
         binding.roomDescription.text = room.room_code
