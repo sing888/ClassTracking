@@ -173,7 +173,7 @@ class RoomFragment : Fragment(){
                 UiStateStatus.error -> {
                     binding.progressLayout.visibility = View.GONE
                     binding.textViewRoom.visibility = View.VISIBLE
-                    binding.textViewRoom.text = "Something went wrong!"
+                    binding.textViewRoom.text = "No room found"
                     binding.recyclerViewRoom.visibility = View.GONE
                 }
             }
