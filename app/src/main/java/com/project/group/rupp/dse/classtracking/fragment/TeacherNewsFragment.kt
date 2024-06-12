@@ -71,7 +71,10 @@ class TeacherNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     if (data.isEmpty()){
                         binding.textViewNews.visibility = View.VISIBLE
                         binding.textViewNews.text = "No news found"
+                        binding.rvCard.visibility = View.GONE
                     } else {
+                        binding.textViewNews.visibility = View.GONE
+                        binding.rvCard.visibility = View.VISIBLE
                         adapter.setDataset(data)
                     }
                 }
@@ -80,6 +83,7 @@ class TeacherNewsFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     binding.textViewNews.visibility = View.VISIBLE
                     binding.textViewNews.text = "This room has no news at the moment."
                     binding.textViewNews.textSize = 16F
+                    binding.rvCard.visibility = View.GONE
                 }
             }
         })

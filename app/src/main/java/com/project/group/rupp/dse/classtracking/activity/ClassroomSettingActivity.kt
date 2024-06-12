@@ -60,7 +60,7 @@ class ClassroomSettingActivity: AppCompatActivity() {
                     }
                     if (data != null) {
                         binding.ipRoomName.setText(data!!.name)
-                        binding.ipPassword.setText(data!!.password)
+                        binding.ipPassword.setText(data?.password)
                         binding.menuStatus.setText(data!!.status)
                     }
                 }
@@ -71,7 +71,7 @@ class ClassroomSettingActivity: AppCompatActivity() {
         })
 
         // dropdown status
-        val statusOptions = arrayOf("Public", "Private", "Invite")
+        val statusOptions = arrayOf("Public", "Private") //, "Invite")
         val statusLayout = binding.menuStatusBox
         val statusText = binding.menuStatus
         val adapter = ArrayAdapter(
@@ -83,12 +83,12 @@ class ClassroomSettingActivity: AppCompatActivity() {
         statusText.setText("Public", false)
 
         statusText.setOnClickListener() {
-            statusText.hideKeyboard()
+//            statusText.hideKeyboard()
         }
 
 
         binding.btnSave.setOnClickListener() {
-            roomViewModel.changeClassroom(this, data!!.classroom_id, binding.ipRoomName.text.toString(), binding.ipPassword.text.toString(), binding.menuStatus.text.toString())
+            roomViewModel.changeClassroom(this, data!!.classroom_id, binding.ipRoomName.text.toString(),  binding.menuStatus.text.toString(), binding.ipPassword.text.toString())
         }
 
         roomViewModel.changeClassroomUiState.observe(this, Observer { uiState ->

@@ -38,7 +38,7 @@ class CreateRoomFragment: Fragment(){
 
 
         // dropdown status
-        val statusOptions = arrayOf("Public", "Private", "Invite")
+        val statusOptions = arrayOf("Public", "Private")//, "Invite")
         val statusLayout = binding.menuStatusBox
         val statusText = binding.menuStatus
         val adapter = ArrayAdapter(
