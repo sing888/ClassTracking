@@ -2,9 +2,13 @@ package com.project.group.rupp.dse.classtracking.activity
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.project.group.rupp.dse.classtracking.databinding.ActivityCreateNewsBinding
 import com.project.group.rupp.dse.classtracking.viewmodels.NewsViewModel
@@ -12,7 +16,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale.getDefault
 
-class CreateNewsActivity : AppCompatActivity() {
+class CreateNewsActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     private var _binding: ActivityCreateNewsBinding? = null
     private val binding get() = _binding!!
     private val newsViewModel: NewsViewModel by viewModels()
@@ -33,12 +37,27 @@ class CreateNewsActivity : AppCompatActivity() {
         binding.newsBack.setOnClickListener {
             finish()
         }
+        binding.swipeRefreshContainer.setOnRefreshListener(this)
 
         binding.postButton.setOnClickListener {
             val newsTitle = binding.inputNewsTitle.editText?.text.toString()
             val newsDescription = binding.inputNewsDescription.editText?.text.toString()
             val newsDeadline = binding.inputNewsDatetime.editText?.text.toString()
-
+            if (newsTitle.isEmpty()){
+                binding.inputNewsTitle.error = "Please enter the title"
+            }else{
+                binding.inputNewsTitle.error = null
+            }
+            if (newsDeadline.isEmpty()){
+                binding.inputNewsDatetime.error = "Please enter the deadline"
+            }else{
+                binding.inputNewsDatetime.error = null
+            }
+            if (newsDescription.isEmpty()){
+                binding.inputNewsDescription.error = "Please enter the description"
+            }else{
+                binding.inputNewsDescription.error = null
+            }
             if (newsTitle.isNotEmpty() && newsDescription.isNotEmpty() && newsDeadline.isNotEmpty()) {
                 Log.d("ButtonClicked", "Post button clicked")
                 if (classroomId != null) {
@@ -78,5 +97,15 @@ class CreateNewsActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            finish()
+            startActivity(intent)
+            Toast.makeText(this, "Refreshed", Toast.LENGTH_LONG).show()
+            binding.swipeRefreshContainer.isRefreshing = false
+        }, 300)
+
     }
 }
